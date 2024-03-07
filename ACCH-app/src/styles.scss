@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-/* Mark Bootstrap path as external to exclude it from the bundle */
-/* @import "~bootstrap/dist/css/bootstrap.css" external;
-@import "~@angular/material/prebuilt-themes/indigo-pink.css" external;*/
+ @import 'bootstrap/dist/css/bootstrap.css';
+ @import '@angular/material/prebuilt-themes/purple-green.css';
 
 
 

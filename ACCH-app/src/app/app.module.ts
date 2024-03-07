@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppComponent } from './app.component';
+
 
 @NgModule({
-  declarations: [
-    // Componentes de tu aplicación
-  ],
-  imports: [
-    CommonModule,
-    MatButtonModule
-  ],
-  providers: []
+  declarations: [AppComponent],
+  imports: [BrowserModule],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
