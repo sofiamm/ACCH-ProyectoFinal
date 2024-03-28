@@ -1,6 +1,25 @@
-<mat-toolbar>
-    <button mat-icon-button>
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>Centro Cristiano de Heredia</span>
-</mat-toolbar>
+<mat-drawer-container class="content" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <button mat-button>
+            <mat-icon>home</mat-icon>
+            Inicio
+        </button>
+        <button mat-button>
+            <mat-icon>book</mat-icon>
+            Cursos
+        </button>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <div class="menu-title">
+            <button mat-icon-button type="button" (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <h2>Centro Cristiano de Heredia</h2>
+        </div>
+        <div class="page-container">
+            <app-content-page></app-content-page>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</mat-drawer-container>

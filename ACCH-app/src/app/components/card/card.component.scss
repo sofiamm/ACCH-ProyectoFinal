@@ -1,0 +1,26 @@
+mat-card {
+    background-color: white;
+    margin: 20px 20px 0px 0px;
+    width: fit-content;
+}
+
+mat-card-content {
+    align-items: center;
+    display: grid;
+    padding: 15px;
+}
+
+h3 {
+    justify-self: center;
+}
+
+img {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    width: 250px;
+}
+
+button {
+    color: black;
+    background-color: orange;
+}
