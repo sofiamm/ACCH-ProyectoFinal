@@ -11,8 +11,9 @@
 
 .sidenav {
     padding-top: 50px;
-
+    width: 200px;
     button {
+        margin-bottom: 20px;
         width: 100%;
     }
 }
@@ -33,4 +34,8 @@
     height: 93%;
     padding: 10px 10px 0px 40px;
     width: 100%;
+}
+
+.spacer {
+    flex: 1 1 auto;
 }

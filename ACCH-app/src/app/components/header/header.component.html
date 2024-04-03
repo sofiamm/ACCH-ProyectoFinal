@@ -6,7 +6,19 @@
         </button>
         <button mat-button>
             <mat-icon>book</mat-icon>
-            Cursos
+            Mis cursos
+        </button>
+        <button mat-button>
+            <mat-icon>timeline</mat-icon>
+            Reportes
+        </button>
+        <button mat-button>
+            <mat-icon>settings</mat-icon>
+            Soporte
+        </button>
+        <button mat-button>
+            <mat-icon>person</mat-icon>
+            Perfil
         </button>
     </mat-drawer>
 
@@ -16,6 +28,25 @@
                 <mat-icon>menu</mat-icon>
             </button>
             <h2>Centro Cristiano de Heredia</h2>
+            <span class="spacer"></span>
+            <button mat-icon-button [matMenuTriggerFor]="perfil">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+            <mat-menu #perfil="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>dialpad</mat-icon>
+                    <span>Redial</span>
+                </button>
+                <button mat-menu-item disabled>
+                    <mat-icon>voicemail</mat-icon>
+                    <span>Check voice mail</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>notifications_off</mat-icon>
+                    <span>Disable alerts</span>
+                </button>
+            </mat-menu>
+
         </div>
         <div class="page-container">
             <app-content-page></app-content-page>

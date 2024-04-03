@@ -1,0 +1,21 @@
+[debug] [2024-04-03T04:21:01.005Z] ----------------------------------------------------------------------
+[debug] [2024-04-03T04:21:01.008Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\somora\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-04-03T04:21:01.008Z] CLI Version:   13.6.1
+[debug] [2024-04-03T04:21:01.009Z] Platform:      win32
+[debug] [2024-04-03T04:21:01.009Z] Node Version:  v20.10.0
+[debug] [2024-04-03T04:21:01.009Z] Time:          Tue Apr 02 2024 22:21:01 GMT-0600 (Central Standard Time)
+[debug] [2024-04-03T04:21:01.009Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-03T04:21:01.017Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-03T04:21:01.017Z] > authorizing via signed-in user (sofiamoramunoz6@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\somora\Documents\GitHub\ACCH-ProyectoFinal\ACCH-app
+
