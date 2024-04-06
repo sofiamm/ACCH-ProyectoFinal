@@ -1,6 +1,9 @@
 .footer {
-    position: absolute;
-    bottom: 0%;
+    align-items: center;
+    background-color: #4c4c4c;
+    color: white;
+    display: flex;
+    padding: 3rem;
 }
 
 a {
@@ -9,4 +12,13 @@ a {
 
 .spacer {
     flex: 1 1 auto;
+}
+
+mat-icon, svg {
+    height: 24px;
+    width: 24px;
+}
+
+svg {
+    margin-left: 20px;
 }

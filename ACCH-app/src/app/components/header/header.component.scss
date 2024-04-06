@@ -1,41 +1,19 @@
-.content {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    height: 100%;
-}
-
-.sidenav-content {
-    align-items: center;
-    height: 100%;
-    justify-content: center;
-}
-
-.sidenav {
-    padding-top: 50px;
-    width: 200px;
-    button {
-        margin-bottom: 20px;
-        width: 100%;
-    }
-}
-
-.menu-title {
-    align-items: center;
-    display: flex;
-
-    h2 {
-        margin: 0;
-    }
-}
-
-.page-container {
-    color: black;
-    background-color: white;
-    display: ruby-text;
-    height: 93%;
-    padding: 10px 10px 0px 40px;
-    width: 100%;
-}
-
 .spacer {
     flex: 1 1 auto;
+}
+
+// Estilos para pantallas más grandes que 1200px
+@media (min-width: 1200px) {
+    .dropdown {
+        float: right;
+        margin-left: 100%;
+    }
+}
+
+// Estilos para pantallas entre 1200px y 992px
+@media (min-width: 992px) and (max-width: 1200px) {
+    .dropdown {
+        float: right;
+        margin-left: 70%;
+    }
 }

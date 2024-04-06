@@ -21,6 +21,15 @@ img {
 }
 
 button {
-    color: black;
-    background-color: orange;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f3c317;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #876b05;
 }
