@@ -1,1 +1,55 @@
-<p>perfil works!</p>
+<app-header></app-header>
+<div class="container mt-4">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h2 class="card-title">Información del Estudiante</h2>
+                    <p class="card-text"><strong>Nombre:</strong> Sofía Mora</p>
+                    <p class="card-text"><strong>Correo electrónico:</strong> {{email}}</p>
+                    <p class="card-text"><strong>Teléfono:</strong> +506 8456-8267</p>
+                    <p class="card-text"><strong>Edad:</strong> 22 años</p>
+                    <button mat-button>
+                        <mat-icon>edit</mat-icon>
+                        Editar
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6 columna-perfil">
+                <img src="https://cdn.pixabay.com/photo/2024/03/28/22/39/ai-generated-8661807_640.png" alt="Perfil">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Bootstrap para editar -->
+@if (showEditModal) {
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Información</h5>
+                <button type="button" class="close" (click)="closeEditModal()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí colocarías tu formulario de edición -->
+                <!-- Por ejemplo:
+          <form>
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input type="text" class="form-control" id="nombre" [(ngModel)]="editedName">
+            </div>
+            Otros campos de edición...
+          </form>
+          -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+}

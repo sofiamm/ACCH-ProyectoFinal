@@ -1,1 +1,8 @@
-<p>mis-cursos works!</p>
+<app-header></app-header>
+<app-banner [tituloBanner]="titulo" [contenidoBanner]="contenido"></app-banner>
+
+<div class="grid">
+    <div *ngFor="let curso of cursos">
+        <app-card [tituloCard]="curso" [icon]="icon" [button]="button"></app-card>
+    </div>
+</div>

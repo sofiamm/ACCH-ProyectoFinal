@@ -6,14 +6,20 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { PreguntasComponent } from './components/preguntas/preguntas.component';
 import { MisCursosComponent } from './components/mis-cursos/mis-cursos.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
+import { PasarelaPagosComponent } from './components/pasarela-pagos/pasarela-pagos.component';
 
 export const routes: Routes = [
     { path: '', component: InicioComponent }, // Ruta por defecto
+    { path: 'registro', component: RegistroComponent },
     { path: 'perfil', component: PerfilComponent },
     { path: 'cursos', component: CursosComponent },
     { path: 'reportes', component: ReportesComponent },
     { path: 'ayuda', component: PreguntasComponent },
     { path: 'mis-cursos', component: MisCursosComponent },
     { path: 'calendario', component: CalendarioComponent },
+    { path: 'chat-bot', component: ChatBotComponent },
+    { path: 'pagar', component: PasarelaPagosComponent },
 
   ];

@@ -8,13 +8,13 @@ import { merge } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-inicio',
+  selector: 'app-registro',
   standalone: true,
   imports: [MatDividerModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatIconModule],
-  templateUrl: './inicio.component.html',
-  styleUrl: './inicio.component.scss'
+  templateUrl: './registro.component.html',
+  styleUrl: './registro.component.scss'
 })
-export class InicioComponent {
+export class RegistroComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
   errorMessage = '';
