@@ -28,16 +28,16 @@ export class ReportesComponent implements OnInit {
         label: 'Cantidad de alumnos que avanzaron de nivel en el último cuatrimestre',
         data: [65, 59, 80, 81],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 205, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)'
+          'rgba(32, 68, 93, 0.2)',
+          'rgba(77, 77, 77, 0.2)',
+          'rgba(193, 155, 46, 0.2)',
+          'rgba(10, 54, 34, 0.2)'
         ],
         borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(255, 159, 64)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)'
+          'rgb(32, 68, 93)',
+          'rgb(77, 77, 77)',
+          'rgb(193, 155, 46)',
+          'rgb(10, 54, 34)'
         ],
         borderWidth: 1
       }]
@@ -62,7 +62,7 @@ export class ReportesComponent implements OnInit {
         label: 'Alumnos matriculados en el último trimestre',
         data: [65, 59, 80, 81],
         fill: true,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgb(193, 155, 46)',
         tension: 0.1
       }]
     };
@@ -85,11 +85,11 @@ export class ReportesComponent implements OnInit {
         label: 'Alumnos matriculados por curosos',
         data: [11, 16, 7, 3, 14],
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(75, 192, 192)',
-          'rgb(255, 205, 86)',
-          'rgb(201, 203, 207)',
-          'rgb(54, 162, 235)'
+          'rgb(32, 68, 93)',
+          'rgb(77, 77, 77)',
+          'rgb(193, 155, 46)',
+          'rgb(10, 54, 34)',
+          'rgb(88, 21, 28)'
         ]
       }]
     };
