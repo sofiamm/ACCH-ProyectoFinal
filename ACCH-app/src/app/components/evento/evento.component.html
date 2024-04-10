@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="container mt-4 main-card">
+    <div class="card">
+        <div class="row">
+            <div class="card-body">
+                <form (ngSubmit)="guardarCambios()">
+                    <h2 class="card-title">Editar Evento</h2>
+                    <mat-form-field>
+                        <mat-label>Nombre del evento</mat-label>
+                        <input matInput type="text" [(ngModel)]="evento.nombre" name="nombre" required>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Profesor a cargo</mat-label>
+                        <input matInput type="text" [(ngModel)]="evento.profesor" name="profesor" required>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Descripción</mat-label>
+                        <textarea matInput [(ngModel)]="evento.descripcion" name="descripcion" rows="5"
+                            required></textarea>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Fecha</mat-label>
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="evento.fecha" name="fecha" required>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Hora</mat-label>
+                        <input matInput type="time" [(ngModel)]="evento.hora" name="hora" required>
+                    </mat-form-field>
+
+                    <button type="submit" mat-button>
+                        <mat-icon>add</mat-icon>
+                        <a href="/calendario">Guardar evento</a>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

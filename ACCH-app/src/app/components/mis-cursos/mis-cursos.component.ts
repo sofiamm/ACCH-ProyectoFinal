@@ -20,6 +20,7 @@ export class MisCursosComponent {
   cursos: string[] = ['Curso 1', 'Curso 2']; // Ejemplo de lista de cursos
   icon: string = 'notes';
   button: string = 'Ver calificaciones';
+  actionButton: string = '/calificaciones';
 
   titulo: string = 'Mis Cursos';
   contenido: string = 'Acá puedes encontrar todos tus cursos matriculados';
