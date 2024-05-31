@@ -1,10 +1,10 @@
 <mat-card>
     <img src="https://cdn.pixabay.com/photo/2016/04/05/03/18/prayer-1308663_1280.jpg" alt="rezando">
     <mat-card-content>
-       <h3>CURSO #1</h3>
+        <h3>{{ tituloCard }}</h3> <!-- Aquí se muestra el título del curso -->
         <button mat-button>
-            <mat-icon>description</mat-icon>
-            Matricular
+            <mat-icon>{{ icon }}</mat-icon>
+            <a href="{{ actionButton }}">{{ button }}</a>
         </button>
     </mat-card-content>
 </mat-card>

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -15,5 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
-
+  @Input() tituloCard: string = ''; // Declara la variable para almacenar el título
+  @Input() icon: string = '';
+  @Input() button: string = '';
+  @Input() actionButton: string = '';
 }

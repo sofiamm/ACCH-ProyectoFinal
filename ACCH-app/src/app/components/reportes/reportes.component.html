@@ -1,2 +1,15 @@
-<p>Acá puedes encontrar el reporte de la semana</p>
-<img src="https://cdn.pixabay.com/photo/2021/05/11/17/21/charts-6246450_1280.png" alt="">
+<app-header></app-header>
+
+<app-banner [tituloBanner]="titulo" [contenidoBanner]="contenido"></app-banner>
+
+<div class="content">
+    <div class="chart">
+        <canvas id="barChart">{{ barChart }}</canvas>
+    </div>
+    <div class="pie">
+        <canvas id="pieChart">{{ pieChart }}</canvas>
+    </div>
+    <div class="chart">
+        <canvas id="lineChart">{{ lineChart }}</canvas>
+    </div>
+</div>

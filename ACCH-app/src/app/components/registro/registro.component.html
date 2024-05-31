@@ -1,0 +1,36 @@
+<div class="body">
+    <div class="login-card">
+        <form (ngSubmit)="login()">
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Correo Electrónico</mat-label>
+                    <input matInput placeholder="pat@example.com" [formControl]="email" (blur)="updateErrorMessage()"
+                        required>
+                    @if (email.invalid) {
+                    <mat-error>{{errorMessage}}</mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'">
+                    <button class="btn-icon" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Confirmar contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'">
+                    <button class="btn-icon" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <button type="submit" class="btn">Registrarse</button>
+        </form>
+        <mat-divider></mat-divider>
+        <button class="btn"><a href="/cursos">Iniciar sesión</a></button>
+    </div>
+</div>

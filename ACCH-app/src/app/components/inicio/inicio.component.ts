@@ -34,7 +34,7 @@ export class InicioComponent {
       this.errorMessage = '';
     }
   }
-  login(){
+  login() {
     console.log("Enviado")
   }
 }
