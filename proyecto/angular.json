@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ACCH-app": {
+    "proyecto": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/acch-app",
+            "outputPath": "dist/proyecto",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -81,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ACCH-app:build:production"
+              "buildTarget": "proyecto:build:production"
             },
             "development": {
-              "buildTarget": "ACCH-app:build:development"
+              "buildTarget": "proyecto:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "ACCH-app:build"
+            "buildTarget": "proyecto:build"
           }
         },
         "test": {
@@ -114,6 +114,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "proyecto:build:production",
+              "serveTarget": "proyecto:serve:production"
+            },
+            "development": {
+              "buildTarget": "proyecto:build:development",
+              "serveTarget": "proyecto:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
