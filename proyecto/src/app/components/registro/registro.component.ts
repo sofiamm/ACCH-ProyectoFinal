@@ -3,14 +3,12 @@ import { AuthService } from '../../services/auth.service';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [MatDividerModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatIconModule],
+  imports: [MatDividerModule, FormsModule, ReactiveFormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.scss'
 })
@@ -19,7 +17,7 @@ export class RegistroComponent implements OnInit {
   password: string = '';
   registerForm: FormGroup;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -36,7 +34,10 @@ export class RegistroComponent implements OnInit {
   register() {
     this.authService.register(this.email, this.password)
       .then(() => {
-        // Redirigir a la página principal
+        this.router.navigate(['/cursos']); // Redirigir al home
       })
+      .catch(error => {
+        console.error(error);
+      });
   }
 }

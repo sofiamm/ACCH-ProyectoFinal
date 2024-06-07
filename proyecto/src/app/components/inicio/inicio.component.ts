@@ -3,14 +3,13 @@ import { AuthService } from '../../services/auth.service';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [MatDividerModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatIconModule],
+  imports: [MatDividerModule, FormsModule, ReactiveFormsModule],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
@@ -19,7 +18,7 @@ export class InicioComponent implements OnInit {
   password: string = '';
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService) { 
+  constructor(private authService: AuthService, private router: Router) { 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -40,7 +39,10 @@ export class InicioComponent implements OnInit {
   login() {
     this.authService.login(this.email, this.password)
       .then(() => {
-        // Redirigir a la página principal
+        this.router.navigate(['/cursos']); // Redirigir al home
       })
+      .catch(error => {
+        console.error(error);
+      });
   }
 }
