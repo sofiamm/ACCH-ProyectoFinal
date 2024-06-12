@@ -31,6 +31,16 @@ export class RegistroComponent implements OnInit {
     });
   }
 
+  loginGoogle() {
+    this.authService.loginGoogle()
+    .then(() => {
+      this.router.navigate(['/cursos']); // Redirigir al home
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+  
   register() {
     this.authService.register(this.email, this.password)
       .then(() => {

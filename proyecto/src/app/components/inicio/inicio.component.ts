@@ -34,6 +34,12 @@ export class InicioComponent implements OnInit {
 
   loginGoogle() {
     this.authService.loginGoogle()
+    .then(() => {
+      this.router.navigate(['/cursos']); // Redirigir al home
+    })
+    .catch(error => {
+      console.error(error);
+    });
   }
 
   login() {
