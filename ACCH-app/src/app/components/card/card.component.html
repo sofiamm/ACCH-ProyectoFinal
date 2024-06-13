@@ -5,11 +5,16 @@
      <div>
         <h4>{{ tituloCard }}</h4> <!-- Aquí se muestra el título del curso --> 
         <p>{{ descripcion }}</p> <!-- Aquí se muestra la descripción del curso 1-->  
-    </div>      
+    </div> 
+    <button mat-button (click)="navigateToPayment()">
+        <mat-icon>{{ icon}}</mat-icon>
+        {{button}}
+    </button>
+    <!--
         <button mat-button >
             <mat-icon>{{ icon }}</mat-icon>
             <a href="{{ actionButton }}">{{ button }}</a>
         </button>
-       
+    -->        
     </mat-card-content>
 </mat-card>
