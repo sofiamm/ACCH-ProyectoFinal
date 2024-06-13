@@ -1,20 +1,10 @@
 <mat-card>
-   <!-- <img src="https://cdn.pixabay.com/photo/2016/04/05/03/18/prayer-1308663_1280.jpg" alt="rezando"> -->
-    <img [src] = "imagen" alt="imagen del curso">
+    <img src="https://cdn.pixabay.com/photo/2016/04/05/03/18/prayer-1308663_1280.jpg" alt="rezando">
     <mat-card-content>
-     <div>
-        <h4>{{ tituloCard }}</h4> <!-- Aquí se muestra el título del curso --> 
-        <p>{{ descripcion }}</p> <!-- Aquí se muestra la descripción del curso 1-->  
-    </div> 
-    <button mat-button (click)="navigateToPayment()">
-        <mat-icon>{{ icon}}</mat-icon>
-        {{button}}
-    </button>
-    <!--
-        <button mat-button >
+        <h3>{{ tituloCard }}</h3> <!-- Aquí se muestra el título del curso -->
+        <button mat-button>
             <mat-icon>{{ icon }}</mat-icon>
             <a href="{{ actionButton }}">{{ button }}</a>
         </button>
-    -->        
     </mat-card-content>
 </mat-card>

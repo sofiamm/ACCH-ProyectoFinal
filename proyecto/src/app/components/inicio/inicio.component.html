@@ -1,28 +1,30 @@
-<div class="body">
-  <div class="login-card">
-    <form (ngSubmit)="login()">
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>Correo Electrónico</mat-label>
-          <input matInput placeholder="pat@example.com" [formControl]="email" (blur)="updateErrorMessage()" required>
-          @if (email.invalid) {
-          <mat-error>{{errorMessage}}</mat-error>
-          }
-        </mat-form-field>
+<div class="page">
+  <div class="container">
+    <h1>Iniciar sesión</h1>
 
-        <mat-form-field>
-          <mat-label>Contraseña</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'">
-          <button class="btn-icon" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" class="form-control" id="email" formControlName="email" required>
       </div>
-      <button type="submit" class="btn">Iniciar sesión</button>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required>
+      </div>
+
+      <div class="btn-container">
+        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+
+        <button class="btn btn-primary btn-google" (click)="loginGoogle()">
+          <span class="google-icon">
+            <img src="../../../assets/GoogleIcon.png" alt="Google icon">
+          </span>
+          Iniciar sesión con Google
+        </button>
+      </div>
     </form>
-    <p>¿Olvidaste tu contraseña?</p>
-    <mat-divider></mat-divider>
-    <button class="btn"><a href="/registro">Registrarse</a></button>
+
+    <p>¿No tienes una cuenta? <a href="/registro">Regístrate</a></p>
   </div>
 </div>

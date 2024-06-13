@@ -1,5 +1,14 @@
 {
+  "targets": {
+    "sagc-bd": {
+      "hosting": {
+        "proyecto": [
+          "sagc-bd"
+        ]
+      }
+    }
+  },
   "projects": {
-    "default": "ccdh-proyecto"
+    "default": "sagc-bd"
   }
 }
