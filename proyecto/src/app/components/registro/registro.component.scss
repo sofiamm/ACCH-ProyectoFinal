@@ -1,56 +1,58 @@
-.body {
-    background-image: url('https://scontent.fsyq1-1.fna.fbcdn.net/v/t39.30808-6/419844157_699408995689823_7324170166552179882_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=IGKnknuOuBcAb6mrh-f&_nc_ht=scontent.fsyq1-1.fna&oh=00_AfDaf2NOk5EPfEeFU5RrO1HfULNa34iZDV24pItze6mVjQ&oe=66165F8A');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 86.9vh;
-    padding: 190px;
-}
-
-a {
-    color: white;
-    text-decoration: none;
-}
-
-mat-divider {
-    border-top-color: #f3c317;
-    margin: 20px;
-}
-
-mat-form-field {
-    width: 100%;
-}
-
-
 .btn-icon {
     background-color: transparent;
     border: none;
     color: white;
 }
 
-.login-card {
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 20px;
+.container {
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: white;
+    max-width: 350px;
+    padding: 20px;
+}
+
+.page {
+    align-content: center;
+    height: 97%;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+.btn-container {
+    display: inline-grid;
+    justify-items: center;
+    width: 100%;
 }
 
 .btn {
-    width: 100%;
-    padding: 10px;
     border: none;
-    border-radius: 4px;
     background-color: #f3c317;
-    color: white;
-    cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .btn:hover {
     background-color: #876b05;
 }
+
+/* Botón de inicio de sesión de Google */
+.btn-google {
+    background-color: white;
+    border-color: #f3c317;
+    border-style: double;
+    color: #f3c317;
+  }
+  .btn-google:hover {
+    background-color: #f0e5bd;
+}
+
+  .btn-google .google-icon {
+    margin-right: 10px;
+  }
+  
+  .btn-google .google-icon img {
+    width: 20px;
+    height: 20px;
+  }
+  

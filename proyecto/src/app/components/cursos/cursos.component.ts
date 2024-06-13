@@ -17,7 +17,6 @@ import { HeaderComponent } from '../header/header.component';
   styleUrl: './cursos.component.scss'
 })
 export class CursosComponent {
-  //cursos: string[] = ['Curso 1', 'Curso 2', 'Curso 3', 'Curso 4', 'Curso 5']; // Ejemplo de lista de cursos
   cursos: {nombre: string, descripcion: string, imagen:string }[] = [
     { nombre: 'Pre-Encuentro', descripcion: 'Descubriendo mis dones',imagen:'https://img.freepik.com/fotos-premium/gente-religiosa-adorando-cruz-reunion-abarrotada_901408-9485.jpg' },
     { nombre: 'Post-Encuentro', descripcion: 'Descubriendo mis dones',imagen:'https://img.freepik.com/fotos-premium/jesucristo-ensena-ninos-cristianismo-biblia-pecados_888396-7035.jpg' },

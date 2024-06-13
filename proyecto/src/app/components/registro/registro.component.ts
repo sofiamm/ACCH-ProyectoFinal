@@ -1,40 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+
 import { MatDividerModule } from '@angular/material/divider';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { merge } from 'rxjs';
-import { MatIconModule } from '@angular/material/icon';
+import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [MatDividerModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatIconModule],
+  imports: [MatDividerModule, FormsModule, ReactiveFormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.scss'
 })
-export class RegistroComponent {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  hide = true;
-  errorMessage = '';
+export class RegistroComponent implements OnInit {
+  email: string = '';
+  password: string = '';
+  registerForm: FormGroup;
 
-  constructor() {
-    merge(this.email.statusChanges, this.email.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
+  constructor(private authService: AuthService, private router: Router) {
+    this.registerForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    });
   }
 
-  updateErrorMessage() {
-    if (this.email.hasError('required')) {
-      this.errorMessage = 'Debe ingresar un valor válido';
-    } else if (this.email.hasError('email')) {
-      this.errorMessage = 'No es un email válido';
-    } else {
-      this.errorMessage = '';
-    }
+  ngOnInit(): void {
+    this.registerForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    });
   }
-  login() {
-    console.log("Enviado")
+
+  loginGoogle() {
+    this.authService.loginGoogle()
+    .then(() => {
+      this.router.navigate(['/cursos']); // Redirigir al home
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+  
+  register() {
+    this.authService.register(this.email, this.password)
+      .then(() => {
+        this.router.navigate(['/cursos']); // Redirigir al home
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 }

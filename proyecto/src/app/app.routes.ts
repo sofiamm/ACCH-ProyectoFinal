@@ -14,6 +14,7 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
 import { EventoComponent } from './components/evento/evento.component';
 import { InstructoresComponent } from './components/instructores/instructores.component';
 
+
 export const routes: Routes = [
     { path: '', component: InicioComponent }, // Ruta por defecto
     { path: 'registro', component: RegistroComponent },
