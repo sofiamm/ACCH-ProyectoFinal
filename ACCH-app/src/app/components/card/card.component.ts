@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {Router} from '@angular/router';
 
 
 @Component({
@@ -23,10 +22,4 @@ export class CardComponent {
   @Input() button: string = '';
   @Input() actionButton: string = '';
   @Input() imagen: string = '';
-
-  constructor (private router:Router){}
-
-  redirectToPayment(){
-    this.router.navigate(['/pagar'],{queryParams:{curso:this.tituloCard}});
-  }
 }
