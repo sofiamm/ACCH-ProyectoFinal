@@ -24,7 +24,7 @@
                     <!-- Su Orden -->
                     <h2>Material a adquirir por materia</h2>
                     <div class="form-group">
-                        <label for="materia">Curso #1</label>
+                        <label for="materia">{{cursoSeleccionado}}</label>
                         <select class="form-control" id="material">
                             <option>Libro de texto</option>
                             <option>Material virtual</option>
@@ -69,13 +69,6 @@
                             condiciones de
                             la web *</label>
                     </div>
-                    <br>
-                    <br>
-
-                    <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                        <span>Cargar comprobante</span>
-                        <input (change)="onFileSelected($event)" id="file-upload" name="file-upload" type="file" class="sr-only">
-                      </label>
 
                     <!-- Botón de Realizar Pedido -->
                     <button type="submit" mat-button>
