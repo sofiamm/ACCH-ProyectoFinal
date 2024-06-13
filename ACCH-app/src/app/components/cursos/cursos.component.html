@@ -3,6 +3,7 @@
 
 <div class="grid">
     <div *ngFor="let curso of cursos">
-        <app-card [tituloCard]="curso.nombre" [icon]="curso.icon" [button]="curso.button" [actionButton]="curso.action" [descripcion]="curso.descripcion"></app-card>
+        <app-card [tituloCard]="curso.nombre" [descripcion]="curso.descripcion" [icon]="icon" [button]="button" [actionButton]="actionButton" [imagen]="curso.imagen">
+        </app-card>
     </div>
 </div>
