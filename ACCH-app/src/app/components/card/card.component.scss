@@ -1,23 +1,37 @@
 mat-card {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     margin: 20px 20px 0px 0px;
-    width: fit-content;
+    width: 300px;
+    height: 320px;
+    max-width: 300px; /* Evita que se expanda más allá de este ancho */
+    max-height: 400px; /* Evita que se expanda más allá de este alto */
+    overflow-wrap: break-word; /* Permite que las palabras largas se rompan en varias líneas */
 }
 
 mat-card-content {
     align-items: center;
     display: grid;
     padding: 15px;
+    text-align: center;
 }
 
 h3 {
-    justify-self: center;
+    font-size: 1.2em;
+    margin: 10px 0;
+    text-align: center; /* Alinear el texto al centro */
+    white-space: pre-line; /* Permitir el salto de línea */
 }
+
+h4 {
+    justify-self: center;  
+}
+
 
 img {
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
     width: 250px;
+    margin: 0 auto; /*centra la imagen horizontalmente */
 }
 
 button {
@@ -25,13 +39,14 @@ button {
     padding: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #f3c317;
+    background-color:#2a9d8f;
     color: white;
+    font-size: 1em;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #876b05;
+    background-color: #F4A261;
 }
 
 a {

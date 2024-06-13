@@ -17,7 +17,7 @@ import { HeaderComponent } from '../header/header.component';
   styleUrl: './mis-cursos.component.scss'
 })
 export class MisCursosComponent {
-  cursos: string[] = ['Curso 1', 'Curso 2']; // Ejemplo de lista de cursos
+  cursos: string[] = ['Pre-Encuentro']; // Ejemplo de lista de cursos
   icon: string = 'notes';
   button: string = 'Ver calificaciones';
   actionButton: string = '/calificaciones';

@@ -1,5 +1,6 @@
 .grid {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     margin: 100px 0px;
+    flex-wrap: wrap;
 }

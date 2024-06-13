@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class CardComponent {
   @Input() tituloCard: string = ''; // Declara la variable para almacenar el título
+  @Input() descripcion: string = '';
   @Input() icon: string = '';
   @Input() button: string = '';
   @Input() actionButton: string = '';
