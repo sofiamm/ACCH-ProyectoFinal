@@ -12,7 +12,6 @@ import { PasarelaPagosComponent } from './components/pasarela-pagos/pasarela-pag
 import { CalificacionesComponent } from './components/calificaciones/calificaciones.component';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 import { EventoComponent } from './components/evento/evento.component';
-import { InstructoresComponent } from './instructores/instructores.component';
 
 export const routes: Routes = [
     { path: '', component: InicioComponent }, // Ruta por defecto
@@ -28,5 +27,4 @@ export const routes: Routes = [
     { path: 'calificaciones', component: CalificacionesComponent },
     { path: 'editar', component: EditarPerfilComponent },
     { path: 'evento', component: EventoComponent },
-    { path: 'instructores', component: InstructoresComponent },
   ];
