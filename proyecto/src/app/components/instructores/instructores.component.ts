@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { InstructorModel } from '../models/instructor.model';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { InstructorModel } from '../../models/instructor.model';
 
 
 
