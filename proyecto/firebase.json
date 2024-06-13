@@ -24,14 +24,5 @@
   ],
   "storage": {
     "rules": "storage.rules"
-  },
-  "hosting": [
-    {
-      "target": "proyecto",
-      "source": ".",
-      "frameworksBackend": {
-        "region": "us-central1"
-      }
-    }
-  ]
+  }
 }
