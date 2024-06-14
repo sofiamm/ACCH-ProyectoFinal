@@ -1,11 +1,15 @@
+
 import { Component, OnInit, inject} from '@angular/core';
+
 import { HeaderComponent } from '../header/header.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
+
 import { Observable } from 'rxjs';
 //import { ref, uploadBytesResumable } from '@angular/fire/storage';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
+
 
 @Component({
   selector: 'app-pasarela-pagos',
@@ -19,6 +23,7 @@ import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fir
   styleUrl: './pasarela-pagos.component.scss'
 })
 export class PasarelaPagosComponent implements OnInit{
+
 
   cursoSeleccionado: String = '';
 
@@ -58,5 +63,3 @@ export class PasarelaPagosComponent implements OnInit{
   )
 }
 }
-
-  
