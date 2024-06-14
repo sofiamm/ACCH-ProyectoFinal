@@ -9,10 +9,6 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 import { AngularFireModule } from '@angular/fire/compat';
-import { StorageModule } from '@angular/fire/storage';
-import { AppComponent } from './app.component';
-import { PasarelaPagosComponent } from './components/pasarela-pagos/pasarela-pagos.component';
-import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -20,7 +16,6 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    StorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth())
   ],
