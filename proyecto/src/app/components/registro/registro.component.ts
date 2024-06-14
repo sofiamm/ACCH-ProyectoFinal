@@ -34,7 +34,7 @@ export class RegistroComponent implements OnInit {
   loginGoogle() {
     this.authService.loginGoogle()
     .then(() => {
-      this.router.navigate(['/cursos']); // Redirigir al home
+      this.router.navigate(['/']); // Redirigir al home
     })
     .catch(error => {
       console.error(error);
@@ -44,7 +44,7 @@ export class RegistroComponent implements OnInit {
   register() {
     this.authService.register(this.email, this.password)
       .then(() => {
-        this.router.navigate(['/cursos']); // Redirigir al home
+        this.router.navigate(['/']); // Redirigir al home
       })
       .catch(error => {
         console.error(error);

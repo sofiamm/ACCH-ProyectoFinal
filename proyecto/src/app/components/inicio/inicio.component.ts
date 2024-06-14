@@ -35,7 +35,7 @@ export class InicioComponent implements OnInit {
   loginGoogle() {
     this.authService.loginGoogle()
     .then(() => {
-      this.router.navigate(['/cursos']); // Redirigir al home
+      this.router.navigate(['/']); // Redirigir al home
     })
     .catch(error => {
       console.error(error);
@@ -45,7 +45,7 @@ export class InicioComponent implements OnInit {
   login() {
     this.authService.login(this.email, this.password)
       .then(() => {
-        this.router.navigate(['/cursos']); // Redirigir al home
+        this.router.navigate(['/']); // Redirigir al home
       })
       .catch(error => {
         console.error(error);
