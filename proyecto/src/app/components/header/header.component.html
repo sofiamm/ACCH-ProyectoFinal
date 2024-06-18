@@ -14,14 +14,14 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">Sofía Mora</a>
+                        aria-expanded="false">{{ name }}</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
                         <li><a class="dropdown-item" href="/mis-cursos">Mis cursos</a></li>
-                        <li><a class="dropdown-item" href="/calendario">Calendario</a></li>
+                        <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>

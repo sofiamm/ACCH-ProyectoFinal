@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
   styleUrl: './registro.component.scss'
 })
 export class RegistroComponent implements OnInit {
-  email: string = '';
-  password: string = '';
+  email: string = "";
+  password: string = "";
   registerForm: FormGroup;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -42,6 +42,9 @@ export class RegistroComponent implements OnInit {
   }
   
   register() {
+    this.email = this.registerForm.getRawValue().email;
+    this.password = this.registerForm.getRawValue().password;
+
     this.authService.register(this.email, this.password)
       .then(() => {
         this.router.navigate(['/']); // Redirigir al home

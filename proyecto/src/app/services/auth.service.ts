@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, signOut, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 
-
 @Injectable({
   providedIn: 'root'
 })
