@@ -1,45 +1,101 @@
-import { Component } from '@angular/core';
-
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { InstructorModel } from '../../models/instructor.model';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+//import { EmployeeService } from './services/employee.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+//import { CoreService } from './core/core.service';
+//import { InstructoresComponent } from '../components/instructores/instructores.component';
 
 
 @Component({
   selector: 'app-instructores',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './instructores.component.html',
-  styleUrl: './instructores.component.scss'
+  styleUrls: ['./instructores.component.scss'],
 })
-export class InstructoresComponent {
-  InstructorModelArray: InstructorModel[] = [
-    {id: 1, name:"Dyla", curso: "INSA"},
-    {id: 2, name:"Dyla", curso: "INSA"},
-    {id: 3, name:"Dyla", curso: "INSA"},
-
+export class AppComponent implements OnInit {
+  displayedColumns: string[] = [
+    'id',
+    'firstName',
+    'lastName',
+    'email',
+    'dob',
+    'gender',
+    'education',
+    'company',
+    'experience',
+    'package',
+    'action',
   ];
+  dataSource!: MatTableDataSource<any>;
 
-  selectedInstructorModel: InstructorModel = new InstructorModel();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  openForEdit(instructor : InstructorModel) {
-    this.selectedInstructorModel = instructor;
+  constructor(
+    private _dialog: MatDialog,
+    private _empService: EmployeeService,
+    private _coreService: CoreService
+  ) {}
+
+  ngOnInit(): void {
+    this.getEmployeeList();
   }
 
-  add0rEdit() {
-    if(this.selectedInstructorModel.id === 0){
-      this.selectedInstructorModel.id = this.InstructorModelArray.length + 1;
-      this.InstructorModelArray.push(this.selectedInstructorModel);
+  openAddEditEmpForm() {
+    const dialogRef = this._dialog.open(InstructoresComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getEmployeeList();
+        }
+      },
+    });
+  }
+
+  getEmployeeList() {
+    this._empService.getEmployeeList().subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      error: console.log,
+    });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
-    this.selectedInstructorModel = new InstructorModel();
   }
 
-  delete(){
-    if(confirm('Está seguro que desea eliminarlo?')){
-      this.InstructorModelArray = this.InstructorModelArray.filter(x => x != this.selectedInstructorModel)
-      this.selectedInstructorModel = new InstructorModel();
-    }
+  deleteEmployee(id: number) {
+    this._empService.deleteEmployee(id).subscribe({
+      next: (res) => {
+        this._coreService.openSnackBar('Employee deleted!', 'done');
+        this.getEmployeeList();
+      },
+      error: console.log,
+    });
   }
 
+  openEditForm(data: any) {
+    const dialogRef = this._dialog.open(InstructoresComponent, {
+      data,
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getEmployeeList();
+        }
+      },
+    });
+  }
 }
+
+export { InstructoresComponent };

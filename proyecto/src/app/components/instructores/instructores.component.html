@@ -1,63 +1,96 @@
-<nav class="navbar navbar-light" style="background-color:#CAD2C5">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/01/95/0e/01950e22-85d9-15e7-ac06-6f625d1b6fff/AppIcon-1x_U007emarketing-0-7-0-85-220.png/1200x630wa.png"
-                alt="Logo" width="30" height="24" class="d-inline-block align-text-top">Centro Cristiano de Heredia
-        </a>
+<mat-toolbar color="primary">
+    <span>Crud Application</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button (click)="openAddEditEmpForm()">
+      ADD EMPLOYEE
+    </button>
+  </mat-toolbar>
+  
+  
+  
+  <div class="main-body">
+  
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+  
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort>
+  
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+  
+        <!-- Progress Column -->
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.firstName}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.lastName}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let row"> {{row.email}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="dob">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> dob </th>
+          <td mat-cell *matCellDef="let row"> {{row.dob | date}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> gender </th>
+          <td mat-cell *matCellDef="let row"> {{row.gender}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="education">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Education </th>
+          <td mat-cell *matCellDef="let row"> {{row.education}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="company">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
+          <td mat-cell *matCellDef="let row"> {{row.company}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="experience">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Exp. </th>
+          <td mat-cell *matCellDef="let row"> {{row.experience}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="package">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Package </th>
+          <td mat-cell *matCellDef="let row"> {{row.package | currency:'INR'}}L</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="openEditForm(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteEmployee(row.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
     </div>
-</nav>
-
-<div class="container mt-4">
-    <h2 class="text-center">¡Bienvenido al Portal de Gestión de Líderes/Instructores!</h2>
-    <p class="text-center lead mx-auto" style="max-width: 800px;">
-        Aquí puedes gestionar eficazmente a tus valiosos líderes e instructores, asegurándote de que están equipados
-        para guiar e inspirar a los miembros de tu equipo para que alcancen su máximo potencial.
-        <br><br>
-        1-Añada sin problemas nuevos líderes e instructores con su respectivo curso.
-        <br>
-        2-Mantenga actualizados los perfiles de líderes e instructores con la información más reciente, garantizando su
-        precisión y relevancia.
-        <br>
-        3-Cuando sea necesario, elimine sin esfuerzo a los líderes o instructores del sistema, manteniendo una
-        estructura de equipo racionalizada.
-        <br><br>
-        Empiece ahora y lleve a su equipo a nuevas cotas de éxito.
-    </p>
-    <!-- displays the first shape with lider's name -->
-    <div class="row">
-        <div class="col-md-8 mt-5 mx-auto">
-            <ul class="list-group">
-                <li *ngFor="let instructor of InstructorModelArray" class="list-group-item list-group-item-action"
-                    (click)="openForEdit(instructor)" [class.active]="instructor == selectedInstructorModel"
-                    [class.selected]="instructor == selectedInstructorModel"> <span
-                        class="badge bg-secondary">{{instructor.id}}</span>{{instructor.name}} - {{instructor.curso}}
-                </li>
-
-
-            </ul>
-            <div class="card mt-5">
-                <div class="card-body">
-                    <div class="card-title">
-                        Ingrese un nuevo lider/instructor
-                    </div>
-                    <div class="form-group mt-4">
-                        <input type="text" [(ngModel)]="selectedInstructorModel.name" placeholder="Ingrese el nombre"
-                            class="form-control" required>
-                    </div>
-                    <div class="form-group mt-1">
-                        <input type="text" [(ngModel)]="selectedInstructorModel.curso" placeholder="Tipo de curso"
-                            class="form-control" required>
-                    </div>
-                    <button (click)="add0rEdit()" class="btn btn-lg mt-2"
-                        style="color: #ffffff; background-color: #84a98c;">
-                        Aceptar
-                    </button>
-                    <button *ngIf="selectedInstructorModel.id !== 0" class="btn btn-lg btn-danger mt-2"
-                        (click)="delete()">
-                        Eliminar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  </div>
