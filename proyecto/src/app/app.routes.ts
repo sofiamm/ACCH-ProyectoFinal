@@ -12,7 +12,8 @@ import { CalificacionesComponent } from './components/calificaciones/calificacio
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 import { InstructoresComponent } from './components/instructores/instructores.component';
 
-import { AuthGuard } from './services/guard.service';
+//import { AuthGuard } from './services/guard.service';
+import { AuthGuard } from './services/guard.service.guard';
 
 export const routes: Routes = [
     { path: '', component: CursosComponent }, // Ruta por defecto
