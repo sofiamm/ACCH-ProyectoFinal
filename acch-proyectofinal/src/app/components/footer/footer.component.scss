@@ -1,0 +1,29 @@
+.footer {
+    align-items: center;
+    display: flex;
+    padding: 1.5rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #4c4c4c;
+    color: white;
+    text-align: center;
+}
+
+a {
+    color: white;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+mat-icon, svg {
+    height: 24px;
+    width: 24px;
+}
+
+svg {
+    margin-left: 20px;
+}
