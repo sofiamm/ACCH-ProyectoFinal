@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<app-banner [tituloBanner]="titulo" [contenidoBanner]="contenido"></app-banner>
+
+<div class="content">
+    <div class="chart">
+        <canvas id="barChart">{{ barChart }}</canvas>
+    </div>
+    <div class="pie">
+        <canvas id="pieChart">{{ pieChart }}</canvas>
+    </div>
+    <div class="chart">
+        <canvas id="lineChart">{{ lineChart }}</canvas>
+    </div>
+</div>

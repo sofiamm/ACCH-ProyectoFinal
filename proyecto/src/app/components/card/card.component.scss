@@ -1,0 +1,51 @@
+:host {
+    display: block;
+    padding: 20px;
+  }
+
+mat-card {
+    background-color: rgb(255, 255, 255);
+    margin: 10px 10px 0px 10px;
+    width: 300px;
+    min-height: 350px; /* Evita que se expanda más allá de este alto */
+    overflow-wrap: break-word; /* Permite que las palabras largas se rompan en varias líneas */
+}
+
+mat-card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    padding: 15px;
+    text-align: center;
+}
+
+h3, h4 {
+    text-align: center;
+}
+
+img {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    width: 250px;
+    margin: 0 auto; /*centra la imagen horizontalmente */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color:#2a9d8f;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #F4A261;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}

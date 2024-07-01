@@ -1,0 +1,63 @@
+<nav class="navbar navbar-light" style="background-color:#CAD2C5">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/01/95/0e/01950e22-85d9-15e7-ac06-6f625d1b6fff/AppIcon-1x_U007emarketing-0-7-0-85-220.png/1200x630wa.png"
+                alt="Logo" width="30" height="24" class="d-inline-block align-text-top">Centro Cristiano de Heredia
+        </a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h2 class="text-center">¡Bienvenido al Portal de Gestión de Líderes/Instructores!</h2>
+    <p class="text-center lead mx-auto" style="max-width: 800px;">
+        Aquí puedes gestionar eficazmente a tus valiosos líderes e instructores, asegurándote de que están equipados
+        para guiar e inspirar a los miembros de tu equipo para que alcancen su máximo potencial.
+        <br><br>
+        1-Añada sin problemas nuevos líderes e instructores con su respectivo curso.
+        <br>
+        2-Mantenga actualizados los perfiles de líderes e instructores con la información más reciente, garantizando su
+        precisión y relevancia.
+        <br>
+        3-Cuando sea necesario, elimine sin esfuerzo a los líderes o instructores del sistema, manteniendo una
+        estructura de equipo racionalizada.
+        <br><br>
+        Empiece ahora y lleve a su equipo a nuevas cotas de éxito.
+    </p>
+    <!-- displays the first shape with lider's name -->
+    <div class="row">
+        <div class="col-md-8 mt-5 mx-auto">
+            <ul class="list-group">
+                <li *ngFor="let instructor of InstructorModelArray" class="list-group-item list-group-item-action"
+                    (click)="openForEdit(instructor)" [class.active]="instructor == selectedInstructorModel"
+                    [class.selected]="instructor == selectedInstructorModel"> <span
+                        class="badge bg-secondary">{{instructor.id}}</span>{{instructor.name}} - {{instructor.curso}}
+                </li>
+
+
+            </ul>
+            <div class="card mt-5">
+                <div class="card-body">
+                    <div class="card-title">
+                        Ingrese un nuevo lider/instructor
+                    </div>
+                    <div class="form-group mt-4">
+                        <input type="text" [(ngModel)]="selectedInstructorModel.name" placeholder="Ingrese el nombre"
+                            class="form-control" required>
+                    </div>
+                    <div class="form-group mt-1">
+                        <input type="text" [(ngModel)]="selectedInstructorModel.curso" placeholder="Tipo de curso"
+                            class="form-control" required>
+                    </div>
+                    <button (click)="add0rEdit()" class="btn btn-lg mt-2"
+                        style="color: #ffffff; background-color: #84a98c;">
+                        Aceptar
+                    </button>
+                    <button *ngIf="selectedInstructorModel.id !== 0" class="btn btn-lg btn-danger mt-2"
+                        (click)="delete()">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

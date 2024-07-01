@@ -1,0 +1,33 @@
+nav {
+    background-color: #f5f5f5;
+}
+
+.logo {
+    height: 60px;
+}
+
+a {
+    color: #95a6b0;
+}
+
+a:hover {
+    color: #26445a;
+    font-weight: 500;
+}
+
+
+// Estilos para pantallas más grandes que 1200px
+@media (min-width: 1200px) {
+    .dropdown {
+        float: right;
+        margin-left: 100%;
+    }
+}
+
+// Estilos para pantallas entre 1200px y 992px
+@media (min-width: 992px) and (max-width: 1200px) {
+    .dropdown {
+        float: right;
+        margin-left: 70%;
+    }
+}
