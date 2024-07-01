@@ -1,9 +1,0 @@
-<app-header></app-header>
-<app-banner [tituloBanner]="titulo" [contenidoBanner]="contenido"></app-banner>
-
-<div class="grid">
-    <div *ngFor="let curso of cursos">
-        <app-card [tituloCard]="curso.nombre" [descripcion]="curso.descripcion" [icon]="icon" [button]="button" [actionButton]="actionButton" [imagen]="curso.imagen">
-        </app-card>
-    </div>
-</div>
