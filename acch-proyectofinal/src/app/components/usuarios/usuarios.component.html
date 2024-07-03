@@ -1,0 +1,127 @@
+<app-header></app-header>
+<br>
+<br>
+<app-banner [tituloBanner]="titulo" [contenidoBanner]="contenido"></app-banner>
+
+<div class="container">
+    <div class="columns">
+        <div class="column col-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-3 col-sm-12 col-ml-auto">
+                        <input class="form-input" type="text" id="globalSearch" (input)="onChange($event)"
+                            placeholder="Buscar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <ngx-table #table [configuration]="configuration" [data]="usuarios" [columns]="columns">
+        </ngx-table>
+        <ng-template #actionTpl let-row>
+            <button class="btn btn-sm btn-outline-warning me-2" (click)="openEditModal(row)" data-bs-toggle="modal"
+                data-bs-target="#editUser"><i class="bi bi-pencil-square"></i> Editar</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="openDeleteModal(row)"><i class="bi bi-trash3"></i>
+                Eliminar</button>
+        </ng-template>
+        <div class="user-actions">
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addUser">Crear
+                Usuario</button>
+        </div>
+    </div>
+
+    <!-- modals -->
+    <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true"
+        #addUserModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addUserModalLabel">Agregar Nuevo Usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="newUserForm" (ngSubmit)="createUser(); closeModal('add')">
+                        <div class="mb-3">
+                            <label class="form-label" for="nombre">Nombre</label>
+                            <input type="text" class="form-control" formControlName="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="apellido">Apellidos</label>
+                            <input type="text" class="form-control" formControlName="apellido" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="telefono">Teléfono</label>
+                            <input type="text" class="form-control" formControlName="telefono" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="correoElectronico">Correo Electrónico</label>
+                            <input type="email" class="form-control" formControlName="correoElectronico" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="contrasena">Contrase&ntilde;a</label>
+                            <input type="password" class="form-control" formControlName="contrasena" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="rol">Rol</label>
+                            <select class="form-control" formControlName="rol" required>
+                                <option value="admin">Administrador</option>
+                                <option value="instructor">Instructor</option>
+                                <option value="alumno">Alumno</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Agregar</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true"
+        #editUserModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addUserModalLabel">Editar Usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editUserForm" (ngSubmit)="updateUser(); closeModal('edit')">
+                        <div class="mb-3">
+                            <label class="form-label" for="nombre">Nombre</label>
+                            <input type="text" class="form-control" formControlName="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="apellido">Apellidos</label>
+                            <input type="text" class="form-control" formControlName="apellido" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="telefono">Teléfono</label>
+                            <input type="text" class="form-control" formControlName="telefono" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="correoElectronico">Correo Electrónico</label>
+                            <input type="email" class="form-control" formControlName="correoElectronico" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="contrasena">Contrase&ntilde;a</label>
+                            <input type="password" class="form-control" formControlName="contrasena" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="rol">Rol</label>
+                            <select class="form-control" formControlName="rol" required>
+                                <option value="admin">Administrador</option>
+                                <option value="instructor">Instructor</option>
+                                <option value="alumno">Alumno</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Agregar</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
