@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChatGptService } from '../../services/chatgpt.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -23,22 +23,40 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './chat-bot.component.scss'
 })
 
-export class ChatBotComponent {
-  messages: string[] = [];
-  userInput: string = '';
-
-  //constructor(private chatService: ChatGptService) { }
-
-  sendMessage(): void {
-    if (this.userInput.trim() === '') {
-      return;
+export class ChatBotComponent implements OnInit {
+  usuarioLogeado : any
+  nuevoMensaje: string = "";
+  mensajes: any =[
+    {
+      emisor:"id",
+      texto:"Hola que tal?"
+    },
+    {
+      emisor:"id",
+      texto:"Hola que tal?"
+    },
+    {
+      emisor:"id",
+      texto:"todo bn y vos"
+    },
+    {
+      emisor:"id",
+      texto:"todo bien"
+    },
+    {
+      emisor:"id",
+      texto:"Que bueno"
     }
+  ]
+  constructor() { }
 
-    this.messages.push('You: ' + this.userInput);
-    /* this.chatService.sendMessage(this.userInput).subscribe(response => {
-      this.messages.push('ChatGPT: ' + response.choices[0].text.trim());
-    }); */
+  ngOnInit(): void {
 
-    this.userInput = '';
+  }
+
+  enviarMensaje() {
+    console.log(this.nuevoMensaje);
+    this.nuevoMensaje = "";
+
   }
 }

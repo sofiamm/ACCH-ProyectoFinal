@@ -1,14 +1,25 @@
-<!-- <div class="chat-container">
-  <div *ngFor="let message of messages" class="message">{{ message }}</div>
-</div>
-<div class="input-container">
-  <input type="text" [(ngModel)]='userInput' (keyup.enter)="sendMessage()" placeholder="Type your message...">
-  <button (click)="sendMessage()">Send</button>
-</div> -->
+<div class="card text-center cardContainer">
 
-<div class="bubble-container" cdkScrollable>
-  <button mat-raised-button #tooltip="matTooltip" matTooltip="Este es un bot con el que puedes hablar" [matTooltipPosition]="'left'"
-    matTooltipHideDelay="0">
-    <mat-icon>message</mat-icon>
-  </button>
+  <div class="card-header">
+    CHATEA CON NOSOTROS
+  </div>
+
+  <div class="card-body">
+    <div>
+      <p *ngFor="let mensaje of mensajes" class="enviado p-2">
+        {{mensaje.texto}}
+
+      </p>
+    </div>
+
+  </div>
+
+  <form class="card-footer text-muted input-group" (ngSubmit)="enviarMensaje()">
+      <input type="text" class="form-control" placeholder="Ingrese su mensaje" [(ngModel)]="nuevoMensaje" [ngModelOptions]="{standalone: true}">
+      <div class="input-group-append" (click)="enviarMensaje()">
+        <span class="input-group-text" id="basic-addon2">
+          <img class="imgEnviar" src="https://cdn0.iconfinder.com/data/icons/superglyph-communication/30/message-sending-1024.png" width="20px" alt="send message">
+        </span>
+      </div>
+  </form>
 </div>
