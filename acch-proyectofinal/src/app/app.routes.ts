@@ -9,7 +9,6 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { PasarelaPagosComponent } from './components/pasarela-pagos/pasarela-pagos.component';
 import { CalificacionesComponent } from './components/calificaciones/calificaciones.component';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
-import { InstructoresComponent } from './components/instructores/instructores.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 export const routes: Routes = [
@@ -24,6 +23,5 @@ export const routes: Routes = [
     { path: 'pagar', component: PasarelaPagosComponent },
     { path: 'calificaciones', component: CalificacionesComponent },
     { path: 'editar', component: EditarPerfilComponent },
-    { path: 'instructores', component: InstructoresComponent },
     { path: 'usuarios', component: UsuariosComponent },
   ];
