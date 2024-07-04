@@ -1,9 +1,5 @@
 <app-header></app-header>
-<br>
-<br>
-<app-banner [tituloBanner]="titulo" [contenidoBanner]="contenido"></app-banner>
-
-<div class="container">
+<div class="content-wrapper">
     <div class="columns">
         <div class="column col-12">
             <form class="form-horizontal">
@@ -15,6 +11,10 @@
                 </div>
             </form>
         </div>
+        <div class="user-actions">
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addUser">
+                <i class="bi bi-plus-lg"></i> Crear Usuario</button>
+        </div>
         <ngx-table #table [configuration]="configuration" [data]="usuarios" [columns]="columns">
         </ngx-table>
         <ng-template #actionTpl let-row>
@@ -23,10 +23,6 @@
             <button class="btn btn-sm btn-outline-danger" (click)="openDeleteModal(row)"><i class="bi bi-trash3"></i>
                 Eliminar</button>
         </ng-template>
-        <div class="user-actions">
-            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addUser">Crear
-                Usuario</button>
-        </div>
     </div>
 
     <!-- modals -->
@@ -39,30 +35,31 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form [formGroup]="newUserForm" (ngSubmit)="createUser(); closeModal('add')">
+                    <form [formGroup]="newUserForm" (ngSubmit)="createUser();">
                         <div class="mb-3">
                             <label class="form-label" for="nombre">Nombre</label>
-                            <input type="text" class="form-control" formControlName="nombre" required>
+                            <input type="text" class="form-control" formControlName="nombre" autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="apellido">Apellidos</label>
-                            <input type="text" class="form-control" formControlName="apellido" required>
+                            <input type="text" class="form-control" formControlName="apellido" autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="telefono">Teléfono</label>
-                            <input type="text" class="form-control" formControlName="telefono" required>
+                            <input type="text" class="form-control" formControlName="telefono" autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="correoElectronico">Correo Electrónico</label>
-                            <input type="email" class="form-control" formControlName="correoElectronico" required>
+                            <input type="email" class="form-control" formControlName="correoElectronico"
+                                autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="contrasena">Contrase&ntilde;a</label>
-                            <input type="password" class="form-control" formControlName="contrasena" required>
+                            <input type="password" class="form-control" formControlName="contrasena" autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="rol">Rol</label>
-                            <select class="form-control" formControlName="rol" required>
+                            <select class="form-control" formControlName="rol" autocomplete="off">
                                 <option value="admin">Administrador</option>
                                 <option value="instructor">Instructor</option>
                                 <option value="alumno">Alumno</option>
@@ -87,37 +84,38 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form [formGroup]="editUserForm" (ngSubmit)="updateUser(); closeModal('edit')">
+                    <form [formGroup]="editUserForm" (ngSubmit)="updateUser();">
                         <div class="mb-3">
                             <label class="form-label" for="nombre">Nombre</label>
-                            <input type="text" class="form-control" formControlName="nombre" required>
+                            <input type="text" class="form-control" formControlName="nombre" autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="apellido">Apellidos</label>
-                            <input type="text" class="form-control" formControlName="apellido" required>
+                            <input type="text" class="form-control" formControlName="apellido" autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="telefono">Teléfono</label>
-                            <input type="text" class="form-control" formControlName="telefono" required>
+                            <input type="text" class="form-control" formControlName="telefono" autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="correoElectronico">Correo Electrónico</label>
-                            <input type="email" class="form-control" formControlName="correoElectronico" required>
+                            <input type="email" class="form-control" formControlName="correoElectronico"
+                                autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="contrasena">Contrase&ntilde;a</label>
-                            <input type="password" class="form-control" formControlName="contrasena" required>
+                            <input type="password" class="form-control" formControlName="contrasena" autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="rol">Rol</label>
-                            <select class="form-control" formControlName="rol" required>
+                            <select class="form-control" formControlName="rol" autocomplete="off">
                                 <option value="admin">Administrador</option>
                                 <option value="instructor">Instructor</option>
                                 <option value="alumno">Alumno</option>
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Agregar</button>
+                            <button type="submit" class="btn btn-success">Actualizar</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                         </div>
                     </form>

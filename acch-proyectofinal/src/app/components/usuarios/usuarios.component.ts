@@ -1,14 +1,14 @@
-import { AfterViewInit, Component, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
 import { BannerComponent } from '../banner/banner.component';
 import { HeaderComponent } from '../header/header.component';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Notificaciones } from '../../util/notificaciones.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule, Columns, Config, DefaultConfig, APIDefinition, API } from 'ngx-easy-table';
-
+import { Validaciones } from '../../util/validaciones.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -19,7 +19,7 @@ import { TableModule, Columns, Config, DefaultConfig, APIDefinition, API } from 
     CommonModule,
     ReactiveFormsModule,
     NgbModule,
-    TableModule
+    TableModule,
   ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.scss',
@@ -27,19 +27,17 @@ import { TableModule, Columns, Config, DefaultConfig, APIDefinition, API } from 
 
 export class UsuariosComponent {
 
-  titulo: string = 'Admin Usuarios';
-  contenido: string = 'Administra los usuarios regidtrados o crea uno';
-
   /**
    * Variables
    */
+  validaciones = new Validaciones();
   notificaciones = new Notificaciones();
   newUserForm: FormGroup;
   editUserForm: FormGroup;
   usuarios: Usuario[] = [];
   public configuration!: Config;
   public columns!: Columns[];
-  
+
   @ViewChild('addUserModal') addUserModal!: ElementRef;
   @ViewChild('editUserModal') editUserModal!: ElementRef;
   @ViewChild('table') table!: APIDefinition;
@@ -77,24 +75,36 @@ export class UsuariosComponent {
 
   async createUser() {
     let usuario = this.newUserForm.value;
-    await this.usuarioService.createUser(usuario)
-      .then(docRef => {
-        this.notificaciones.showSuccessNotificacion('Usuario creado exitosamente');
-      })
-      .catch(error => {
-        this.notificaciones.showErrorNotificacion(error);
-      });
+    let validData = this.validaciones.validarDatosUsuario(usuario);
+    if (validData === '') {
+      await this.usuarioService.createUser(usuario)
+        .then(docRef => {
+          this.notificaciones.showSuccessNotificacion('Usuario creado exitosamente');
+          this.closeModal('add');
+        })
+        .catch(error => {
+          this.notificaciones.showErrorNotificacion(error);
+        });
+    } else {
+      this.notificaciones.showErrorNotificacion(validData);
+    }
   }
 
   async updateUser() {
     let usuario = this.editUserForm.value;
-    await this.usuarioService.updateUser(usuario)
-      .then(docRef => {
-        this.notificaciones.showSuccessNotificacion('Usuario actualizado exitosamente');
-      })
-      .catch(error => {
-        this.notificaciones.showErrorNotificacion(error);
-      });
+    let validData = this.validaciones.validarDatosUsuario(usuario);
+    if (validData === '') {
+      await this.usuarioService.updateUser(usuario)
+        .then(docRef => {
+          this.notificaciones.showSuccessNotificacion('Usuario actualizado exitosamente');
+          this.closeModal('edit');
+        })
+        .catch(error => {
+          this.notificaciones.showErrorNotificacion(error);
+        });
+    } else {
+      this.notificaciones.showErrorNotificacion(validData);
+    }
   }
 
 
@@ -149,3 +159,5 @@ export class UsuariosComponent {
     });
   }
 }
+
+
