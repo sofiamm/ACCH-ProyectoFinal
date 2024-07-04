@@ -1,11 +1,3 @@
-#usuariosTb{
-    width: 100%;
-}
-
-#usuariosTb td, #usuariosTb th{
-    text-align: center;
-}
-
 div.container{
     margin: 2% auto;
 }
@@ -14,14 +6,6 @@ div.user-actions{
     float: right;
 }
 
-.deleteUser{
-    margin-left: 5px;
-}
-
 [data-bs-target="#addUser"]{
     margin-top: 10px;
-}
-
-.ngx-table__header-cell{
-    text-align: center;
 }

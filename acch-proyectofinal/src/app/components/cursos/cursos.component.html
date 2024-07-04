@@ -1,9 +1,130 @@
 <app-header></app-header>
-<app-banner [tituloBanner]="titulo" [contenidoBanner]="contenido"></app-banner>
-
-<div class="grid">
-    <div *ngFor="let curso of cursos">
-        <app-card [tituloCard]="curso.nombre" [descripcion]="curso.descripcion" [icon]="icon" [button]="button" [actionButton]="actionButton" [imagen]="curso.imagen">
-        </app-card>
+<div class="content-wrapper">
+    <div class="columns">
+        <div class="column col-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-3 col-sm-12 col-ml-auto">
+                        <input class="form-input" type="text" id="globalSearch" (input)="onChange($event)"
+                            placeholder="Buscar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="course-actions">
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addCourse">
+                <i class="bi bi-plus-lg"></i> Crear Curso</button>
+        </div>
+        <ngx-table #table [configuration]="configuration" [data]="cursos" [columns]="columns">
+        </ngx-table>
+        <ng-template #actionTpl let-row>
+            <button class="btn btn-sm btn-outline-warning me-2" (click)="openEditModal(row)" data-bs-toggle="modal"
+                data-bs-target="#editCourse"><i class="bi bi-pencil-square"></i> Editar</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="openDeleteModal(row)"><i class="bi bi-trash3"></i>
+                Eliminar</button>
+        </ng-template>
+        <ng-template #instructorTemplate let-row>
+            <div *ngIf="row.instructor" class="instructor-name">
+                {{ row.instructor.nombre }} {{ row.instructor.apellido}}
+            </div>
+            <div *ngIf="!row.instructor" class="instructor-name">-</div>
+        </ng-template>
+        <ng-template #imageTemplate let-row>
+            <div *ngIf="row.imagen" style="width: 150px;">
+                <img [src]="row.imagen" class="imagenCurso" alt="curso" style="width: inherit;"
+                    (error)="loadDefaultImg(row)">
+            </div>
+            <div *ngIf="!row.imagen">No imagen</div>
+        </ng-template>
     </div>
-</div>
+
+    <!-- modals -->
+    <div class="modal fade" id="addCourse" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true"
+        #addCourseModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addCourseModalLabel">Agregar Nuevo Curso</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="newCourseForm" (ngSubmit)="createCourse();">
+                        <div class="mb-3">
+                            <label class="form-label" for="nombre">Nombre</label>
+                            <input type="text" class="form-control" formControlName="nombre" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="descripcion">Descripci&oacute;n</label>
+                            <input type="text" class="form-control" formControlName="descripcion" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="evaluacion">Evaluaci&oacute;n</label>
+                            <input type="text" class="form-control" formControlName="evaluacion" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="imagen">Imagen</label>
+                            <input type="text" class="form-control" formControlName="imagen" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="instructor">Instructor</label>
+                            <select class="form-control" formControlName="instructor" autocomplete="off">
+                                <option value="" disabled selected>Seleccione un instructor</option>
+                                <option *ngFor="let instructor of instructores" [value]="instructor.id">
+                                    {{instructor.nombre }} {{ instructor.apellido }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Agregar</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editCourse" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true"
+        #editCourseModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addCourseModalLabel">Editar Curso</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editCourseForm" (ngSubmit)="updateCourse();">
+                        <div class="mb-3">
+                            <label class="form-label" for="nombre">Nombre</label>
+                            <input type="text" class="form-control" formControlName="nombre" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="descripcion">Descripci&oacute;n</label>
+                            <input type="text" class="form-control" formControlName="descripcion" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="evaluacion">Evaluaci&oacute;n</label>
+                            <input type="text" class="form-control" formControlName="evaluacion" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="imagen">Imagen</label>
+                            <input type="text" class="form-control" formControlName="imagen" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="instructor">Instructor</label>
+                            <select class="form-control" formControlName="instructor" autocomplete="off">
+                                <option value="" disabled selected>Seleccione un instructor</option>
+                                <option *ngFor="let instructor of instructores" [value]="instructor.id">
+                                    {{instructor.nombre }} {{ instructor.apellido }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Actualizar</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
