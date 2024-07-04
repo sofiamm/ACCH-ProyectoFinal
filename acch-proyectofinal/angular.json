@@ -31,14 +31,10 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css",
-              "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css",
-              "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",
               "node_modules/ngx-easy-table/style.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/datatables.net/js/dataTables.min.js",
-              "node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"
+              "node_modules/jquery/dist/jquery.min.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,
