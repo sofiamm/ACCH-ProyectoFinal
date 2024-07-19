@@ -19,7 +19,7 @@ import { Validaciones } from '../../util/validaciones.component';
     CommonModule,
     ReactiveFormsModule,
     NgbModule,
-    TableModule,
+    TableModule
   ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.scss',
