@@ -1,102 +1,131 @@
-import { Component, OnInit } from '@angular/core';
-import { Chart, ChartType }  from 'chart.js/auto';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Chart, ChartData, ChartOptions, ChartType } from 'chart.js/auto';
 import { BannerComponent } from '../banner/banner.component';
 import { HeaderComponent } from '../header/header.component';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import { Usuario } from '../../models/usuario.model';
+import { UsuarioService } from '../../services/usuario.service';
+import { BehaviorSubject } from 'rxjs';
+import { Curso } from '../../models/curso.model';
+import { CursoService } from '../../services/curso.service';
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [BannerComponent, HeaderComponent],
+  imports: [BannerComponent, HeaderComponent, MatCard, MatCardHeader, MatCardContent, MatCardTitle],
   templateUrl: './reportes.component.html',
   styleUrl: './reportes.component.scss'
 })
 
 export class ReportesComponent implements OnInit {
-  titulo: string = 'Reportes del cuatrimestre';
-  contenido: string = 'Acá puedes encontrar tus repostes destacados';
+  usuarios: Usuario[] = [];
+  totalUsuarios: number = 0;
+
+  cursos: Curso[] = [];
+  totalCursos: number = 0;
+
+  private totalAdminSubject = new BehaviorSubject<number>(0);
+  totalAdmin = this.totalAdminSubject.asObservable();
+
+  private totalAlumnoSubject = new BehaviorSubject<number>(0);
+  totalAlumno = this.totalAlumnoSubject.asObservable();
+
+  private totalInstructorSubject = new BehaviorSubject<number>(0);
+  totalInstructor = this.totalInstructorSubject.asObservable();
 
   public barChart: Chart | undefined;
-  public lineChart: Chart | undefined;
-  public pieChart: any;
+
+
+  constructor(private usuarioService: UsuarioService, private cursoService: CursoService) {
+    this.usuarioService.getUsers().subscribe(usuarios => {
+      this.usuarios = usuarios;
+      this.totalUsuarios = usuarios.length;
+      this.calculateTotales(usuarios);
+    });
+
+    this.cursoService.getCourses().subscribe(cursos => {
+      this.totalCursos = cursos.length;
+    });
+  }
+
+  private calculateTotales(usuarios: Usuario[]) {
+    const totalAdmin = usuarios.filter(usuario => usuario.rol === 'admin').length;
+    const totalAlumno = usuarios.filter(usuario => usuario.rol === 'alumno').length;
+    const totalInstructor = usuarios.filter(usuario => usuario.rol === 'instructor').length;
+
+    this.totalAdminSubject.next(totalAdmin);
+    this.totalAlumnoSubject.next(totalAlumno);
+    this.totalInstructorSubject.next(totalInstructor);
+  }
+
+  averageSessionDuration = '2m 30s';
+  dailyVisitors = [100, 120, 150, 180];
+  deviceDistribution = {
+    mobile: 60,
+    desktop: 30,
+    tablet: 10
+  };
+
+  // Datos de ejemplo para el gráfico
+  lineChartData: ChartData<'line', number[], string> = {
+    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+    datasets: [{
+      label: "Cursos",
+      data: [12, 19, 3, 5, 2, 3],
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+
+    }]
+  };
+
+  // Configuraciones del gráfico
+  lineChartOptions: ChartOptions<'line'> = {
+    responsive: true
+  };
 
   ngOnInit(): void {
+    // Crear el gráfico utilizando Chart.js
+    const ctx = document.getElementById('myChart') as HTMLCanvasElement;
+    new Chart(ctx, {
+      type: 'line',
+      data: this.lineChartData,
+      options: this.lineChartOptions
+    });
+
     // ----- Datos para el gráfico de barras -----
-    const barData = {
-      labels: ['January', 'February', 'March', 'April'],
-      datasets: [{
-        label: 'Cantidad de alumnos que avanzaron de nivel en el último cuatrimestre',
-        data: [65, 59, 80, 81],
-        backgroundColor: [
-          'rgba(32, 68, 93, 0.2)',
-          'rgba(77, 77, 77, 0.2)',
-          'rgba(193, 155, 46, 0.2)',
-          'rgba(10, 54, 34, 0.2)'
-        ],
-        borderColor: [
-          'rgb(32, 68, 93)',
-          'rgb(77, 77, 77)',
-          'rgb(193, 155, 46)',
-          'rgb(10, 54, 34)'
-        ],
-        borderWidth: 1
-      }]
-    };
-    // Creamos la gráfica de barras
-    this.barChart = new Chart("barChart", {
-      type: 'bar' as ChartType, // tipo de la gráfica 
-      data: barData, // datos 
-      options: { // opciones de la gráfica 
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      },
-    });
+    this.totalAdmin.subscribe(totalAdmin => {
+      this.totalAlumno.subscribe(totalAlumno => {
+        this.totalInstructor.subscribe(totalInstructor => {
+          this.ngOnDestroy();
+          const barData = {
+            labels: ['Admin', 'Alumno', 'Instructor'],
+            datasets: [{
+              label: "Usuarios",
+              data: [totalAdmin, totalAlumno, totalInstructor]
+            }]
+          };
 
-    // ----- Datos para el gráfico de líneas -----
-    const lineData = {
-      labels: ['January', 'February', 'March', 'April'],
-      datasets: [{
-        label: 'Alumnos matriculados en el último trimestre',
-        data: [65, 59, 80, 81],
-        fill: true,
-        borderColor: 'rgb(193, 155, 46)',
-        tension: 0.1
-      }]
-    };
-    // Creamos la gráfica de líneas
-    this.lineChart = new Chart("lineChart", {
-      type: 'line' as ChartType, // tipo de la gráfica 
-      data: lineData // datos 
+          // Creamos la gráfica de barras
+          this.barChart = new Chart("barChart", {
+            type: 'bar' as ChartType, // tipo de la gráfica 
+            data: barData, // datos 
+            options: { // opciones de la gráfica 
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        });
+      });
     });
+  }
 
-    // ----- Datos para el gráfico pastel -----
-    const pieData = {
-      labels: [
-        'Curso 1',
-        'Curso 2',
-        'Curso 3',
-        'Curso 4',
-        'Curso 5'
-      ],
-      datasets: [{
-        label: 'Alumnos matriculados por curosos',
-        data: [11, 16, 7, 3, 14],
-        backgroundColor: [
-          'rgb(32, 68, 93)',
-          'rgb(77, 77, 77)',
-          'rgb(193, 155, 46)',
-          'rgb(10, 54, 34)',
-          'rgb(88, 21, 28)'
-        ]
-      }]
-    };
-
-    // Creamos la gráfica de pastel
-    this.pieChart = new Chart("pieChart", {
-      type: 'pie' as ChartType, // tipo de la gráfica 
-      data: pieData, // datos 
-    });
+  ngOnDestroy(): void {
+    if (this.barChart) {
+      this.barChart.destroy();
+    }
   }
 }
