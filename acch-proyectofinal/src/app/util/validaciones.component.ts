@@ -18,13 +18,13 @@ export class Validaciones {
         if (usuario.nombre == null || usuario.nombre == '') {
             return 'El nombre no es valido';
         } else if (usuario.apellido == null || usuario.apellido == '' || !this.validarMultipleStrings(usuario.apellido)) {
-            return 'El apellido no es valido';
+            return 'Debe incluir los dos apellidos';
         } else if (usuario.telefono == null || usuario.telefono == '' || !this.validarTelefono(usuario.telefono)) {
-            return 'El teléfono no es valido';
+            return 'El teléfono no cumple con el formato correcto';
         } else if (usuario.correoElectronico == null || usuario.correoElectronico == '' || !this.validarCorreo(usuario.correoElectronico)) {
             return 'El correo electrónico no es valido';
-        } else if (usuario.contrasena.length == null || usuario.contrasena == '') {
-            return 'La contraseña no es valido';
+        } else if (!usuario.cuentaGoogle && usuario.contrasena == null || usuario.contrasena == '') {
+            return 'La contraseña no cumple con al menos 8 caracteres';
         } else if (usuario.rol == null || usuario.rol == '') {
             return 'El rol no es valido';
         }

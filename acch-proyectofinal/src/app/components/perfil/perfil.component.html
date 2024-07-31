@@ -1,22 +1,59 @@
 <app-header></app-header>
-
-<div class="container mt-4">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card-body">
-                    <h2 class="card-title">Información de tu perfil</h2>
-                    <p class="card-text"><strong>Nombre: </strong>{{ name }}</p>
-                    <p class="card-text"><strong>Correo electrónico: </strong>{{ email }}</p>
-                    <p class="card-text"><strong>Teléfono: </strong>{{ phone }}</p>
-                    <button mat-button>
-                        <mat-icon>edit</mat-icon>
-                        <a href="/editar">Editar</a>
-                    </button>
+<br>
+<br>
+<br>
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-main p-3 py-4 shadowBorder">
+                <div class="text-center">
+                    <img [src]="userTmp?.imagen" width="100" class="rounded-circle" alt="...">
                 </div>
-            </div>
-            <div class="col-md-6 columna-perfil">
-                <img [src]="photo" alt="Perfil">
+                <div class="text-center mt-3">
+                    <h5 class="mt-2 mb-0 nombre">{{ userTmp?.nombre }}</h5>
+                    <span>{{ userTmp?.correoElectronico }}</span>
+                    <div class="px-4 mt-1">
+                        <span>{{ userTmp?.telefono }}</span>
+                    </div>
+                    <div class="row courses-list overflow">
+                        <div class="col-4">
+                            <div class="card">
+                                <img src="./assets/empty_img.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Titulo del curso.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <img src="./assets/empty_img.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Titulo del curso.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <img src="./assets/empty_img.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Titulo del curso.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <img src="./assets/empty_img.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Titulo del curso.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn btn-outline-warning editProfile"
+                            (click)="router.navigate(['/editar']);">Editar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

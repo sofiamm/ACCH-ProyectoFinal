@@ -1,31 +1,124 @@
 import { Injectable } from '@angular/core';
-import { Auth, signOut, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, User, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Usuario } from '../models/usuario.model';
+import { UsuarioService } from './usuario.service';
+import { Notificaciones } from '../util/notificaciones.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(public auth: Auth) { }
+  notificaciones = new Notificaciones();
+
+  constructor(
+    public auth: Auth,
+    private userService: UsuarioService
+  ) { }
+
+  private storeUserInfoLocally(user: Usuario) {
+    localStorage.setItem('usuario', JSON.stringify(user));
+  }
+
+
+  async login(email: string, password: string) {
+    if (email || password) {
+      try {
+        const result = await signInWithEmailAndPassword(this.auth, email, password);
+        if (result.user) {
+          const existingUser = await this.userService.getUserByEmail(email);
+          if (existingUser) {
+            this.storeUserInfoLocally(existingUser);
+          } else {
+            this.notificaciones.showErrorNotificacion('Usuario no registrado.');
+          }
+        }
+        return result;
+      } catch (error: any) {
+        this.notificaciones.showErrorNotificacion('Error al iniciar sesión.');
+        throw error;
+      }
+    }
+    return null;
+  }
+
+
+  async register(usuario: Usuario) {
+    await this.userService.createUser(usuario);
+    return await createUserWithEmailAndPassword(this.auth, usuario.correoElectronico, usuario.contrasena);
+  }
 
   async loginGoogle() {
-    return await signInWithPopup(this.auth, new GoogleAuthProvider());
+    try {
+      const result = await signInWithPopup(this.auth, new GoogleAuthProvider());
+      if (result.user) {
+        const existingUser = await this.userService.getUserId(result.user.uid);
+        if (existingUser) {
+          this.storeUserInfoLocally(existingUser);
+        } else {
+          this.notificaciones.showErrorNotificacion('Usuario no registrado.');
+        }
+      }
+      return result;
+    } catch (error: any) {
+      return "";
+    }
   }
 
-  login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password);
-  }
-
-  register(email: string, password: string) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+  async signupGoogle() {
+    try {
+      const result = await signInWithPopup(this.auth, new GoogleAuthProvider());
+      if (result.user) {
+        const existingUser = await this.userService.getUserId(result.user.uid);
+        if (!existingUser) {
+          const newUser: Usuario = this.tmpToUser(result.user);
+          await this.userService.createUserGoogle(newUser);
+          this.storeUserInfoLocally(newUser);
+          return newUser;
+        } else {
+          this.notificaciones.showInfoNotificacion('Usuario registrado anteriormente. Iniciando sesión...');
+          this.storeUserInfoLocally(existingUser);
+          return existingUser;
+        }
+      }
+      return null;
+    } catch (error: any) {
+      return null;
+    }
   }
 
   async logout() {
-    return await signOut(this.auth);
+    localStorage.removeItem('usuario');
+    this.auth.signOut();
   }
+
 
   getCurrentUser() {
-    return this.auth.currentUser;
+    if (localStorage.length === 0) return false;
+    return JSON.parse(localStorage.getItem('usuario') || '');
   }
 
+  isLoggedIn(): boolean {
+    try {
+      if (localStorage.length === 0) return false;
+      return !!localStorage.getItem('usuario');
+    } catch (error) {
+      return false;
+    }
+
+  }
+
+  tmpToUser(userTmp: User): Usuario {
+    return {
+      id: userTmp.uid,
+      correoElectronico: userTmp.email ? userTmp.email : "",
+      nombre: userTmp.displayName?.split(' ')[0] || '',
+      imagen: userTmp.photoURL ? userTmp.photoURL : "",
+      apellido: userTmp.displayName?.split(' ')[1] || '',
+      telefono: userTmp.phoneNumber ? userTmp.phoneNumber : "-",
+      contrasena: "-",
+      rol: 'alumno',
+      cursos_inscritos: []
+    };
+  }
 }

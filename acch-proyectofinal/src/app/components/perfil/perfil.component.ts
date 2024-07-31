@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { MatIcon } from '@angular/material/icon';
-
-import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { Usuario } from '../../models/usuario.model';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-perfil',
@@ -14,49 +15,28 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.scss'
 })
-export class PerfilComponent {
-  name = this.getUserName();
-  email = this.getUserEmail();
-  phone = this.getUserPhone();
-  photo = this.getUserPhoto();
+export class PerfilComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  user = localStorage.getItem('usuario') ? JSON.parse(localStorage.getItem('usuario') || '') : null;
+  id = this.user.id;
+  userTmp: Usuario | null = null;
+  defaultImg = "https://i.pinimg.com/474x/31/ec/2c/31ec2ce212492e600b8de27f38846ed7.jpg"
 
-  getUserName() {
-    var name = this.authService.getCurrentUser()?.displayName;
+  constructor(public router: Router, private usuarioService: UsuarioService) { }
 
-    if (name == null || undefined) {
-      name = this.authService.getCurrentUser()?.email;
-    } else {
-      name = this.authService.getCurrentUser()?.displayName;
-    }
-    return name;
+  ngOnInit(): void {
+    this.loadUserData();
   }
 
-  getUserEmail() {
-    var email = this.authService.getCurrentUser()?.email;
-    return email;
-  }
-
-  getUserPhone() {
-    var phone = this.authService.getCurrentUser()?.phoneNumber;
-
-    if (phone == null || undefined) {
-      phone = "-";
-    } else {
-      phone = this.authService.getCurrentUser()?.phoneNumber;
+  private async loadUserData(): Promise<void> {
+    try {
+      this.userTmp = await this.usuarioService.getUserId(this.id);
+      if (this.userTmp != null || this.userTmp != undefined) {
+        this.userTmp.nombre = this.userTmp.nombre || this.userTmp.apellido;
+        this.userTmp.imagen = this.userTmp.imagen || this.defaultImg;
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
-    return phone;
-  }
-
-  getUserPhoto() {
-    var photo = this.authService.getCurrentUser()?.photoURL;
-
-    if (photo == null || undefined) {
-      photo = "https://i.pinimg.com/474x/31/ec/2c/31ec2ce212492e600b8de27f38846ed7.jpg";
-    } else {
-      photo = this.authService.getCurrentUser()?.photoURL;
-    }
-    return photo;
   }
 }
