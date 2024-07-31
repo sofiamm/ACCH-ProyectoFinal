@@ -1,23 +1,32 @@
 <app-header></app-header>
-
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>Total de Usuarios</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content class="number">
                 {{ totalUsuarios }}
             </mat-card-content>
         </mat-card>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>Total de Cursos</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content class="number">
+                {{ totalCursos }}
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-4">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Total de Instructores</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="number">
                 {{ totalCursos }}
             </mat-card-content>
         </mat-card>
@@ -29,7 +38,7 @@
             <mat-card-header>
                 <mat-card-title>Cantidad de usuarios por perfil</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content class="chart">
                 <canvas id="barChart">{{ barChart }}</canvas>
             </mat-card-content>
         </mat-card>
@@ -40,7 +49,7 @@
             <mat-card-header>
                 <mat-card-title>Actividad de usuarios en los cursos</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content class="chart">
                 <canvas id="myChart"></canvas>
             </mat-card-content>
         </mat-card>

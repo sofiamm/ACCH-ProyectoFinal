@@ -1,3 +1,24 @@
 .row {
-    margin-right: 0px;
+    margin: 40px 10px;
+}
+
+mat-card {
+    align-items: center;
+}
+
+mat-card-title {
+    color: #95a6b0;
+    font-weight: bold;
+}
+
+.number {
+    color: #26445a;
+    font-size: xxx-large;
+    font-weight: bold;
+    padding: 0px;
+    margin: 20%;
+}
+
+.chart {
+    min-width: 500px;
 }

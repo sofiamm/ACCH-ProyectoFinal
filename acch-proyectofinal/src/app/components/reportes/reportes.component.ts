@@ -23,6 +23,7 @@ export class ReportesComponent implements OnInit {
 
   cursos: Curso[] = [];
   totalCursos: number = 0;
+  totalInstructores: number = 2;
 
   private totalAdminSubject = new BehaviorSubject<number>(0);
   totalAdmin = this.totalAdminSubject.asObservable();
@@ -75,7 +76,6 @@ export class ReportesComponent implements OnInit {
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
       tension: 0.1
-
     }]
   };
 
