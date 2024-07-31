@@ -1,0 +1,125 @@
+<app-header></app-header>
+<br>
+<br>
+<br>
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Main content area -->
+        <div class="col-lg-8">
+            <!-- Video player -->
+            <div class="embed-responsive-16by9">
+                <video #video class="embed-responsive-item" controls></video>
+            </div>
+
+            <!-- Video title and metadata -->
+            <h4 class="video-name">{{ videoSelected?.id }}</h4>
+
+            <!-- Video description -->
+            <p class="video-desc">{{ videoSelected?.descripcion }}</p>
+
+            <!-- Instructor info -->
+            <div class="d-flex align-items-center mb-4">
+                <img [src]=instructor?.imagen class="rounded-circle mr-3" width="50" height="50" alt="Instructor"
+                    title="{{ instructor?.nombre }} {{ instructor?.apellido }} (Instructor)">
+                <div class="instructor-info">
+                    <span class="mb-0 username">{{ instructor?.nombre }} {{ instructor?.apellido }}</span>
+                    <small class="text-muted">{{ instructor?.rol }}</small>
+                </div>
+            </div>
+
+            <!-- Comment box -->
+            <div class="card mb-4 comments-box">
+                <img [src]=user?.imagen class="rounded-circle mr-3" width="50" height="50"
+                    title="{{ user?.nombre }} {{ user?.apellido }} (T&uacute;)" alt="Usuario">
+                <form [formGroup]="addCommentForm" (ngSubmit)="addComment(course!.id, videoSelected!.id);">
+                    <div class="form-group">
+                        <textarea id="newComment" class="form-control" rows="3"
+                            placeholder="Escribe tu comentario aquí..." formControlName="comment"
+                            (keydown.enter)="$event.preventDefault(); addComment(course!.id, videoSelected!.id);">
+                            </textarea>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Comentarios -->
+            <h6>Comentarios</h6>
+            <div class="comment mb-3" *ngFor="let comment of comments">
+                <div class="d-flex align-items-center">
+                    <img [src]="comment.usuarioImg || 'assets/user-avatar.jpg'" class="rounded-circle mr-3" width="40"
+                        height="40" alt="User">
+                    <div class="users-comment-details">
+                        <span class="mb-0 username">{{ comment.usuarioNombre }}</span>
+                        <p class="comment-text">{{ comment.comentario }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Videos -->
+        <div class="col-lg-4">
+            <div *ngIf="user?.rol === 'admin' || user?.rol === 'instructor'">
+                <div class="upload-video-container">
+                    <span>Agregar video</span>
+                    <input type="file" id="newVideoFile" class="form-control" (change)="onFileSelected($event)"
+                        accept="video/mp4">
+                    <div>
+                        <textarea type="text" id="videoDesc" class="form-control" placeholder="Descripcion del video"
+                            maxlength="100"></textarea>
+                        <button class="btn btn-outline-success upload-video"
+                            (click)="uploadCourseVideo()">Agregar</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h6>Videos del curso {{ course?.nombre }}</h6>
+            <div class="list-group">
+                <a *ngFor="let video of course?.videos" (click)="loadVideo(video!, $event)"
+                    class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100" style="margin-bottom: 5px;">
+                        <span class="mb-1 videos-name">{{ video.id }}</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <p title="{{ video.descripcion }}" class="video-desc-preview">{{ video.descripcion }}</p>
+                        </div>
+                        <div class="col-lg-2 video-actions" *ngIf="user?.rol === 'admin' || user?.rol === 'instructor'">
+                            <a class="edit-video" (click)="openEditModal($event, video)" data-bs-toggle="modal"
+                                data-bs-target="#editVideoDesc"><i class="bi bi-pencil-square"></i></a>
+                            <a class="delete-video" (click)="deleteVideo($event, video!.id!)">
+                                <i class=" bi bi-trash3"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="video-body-footer">
+                        <p class="video-duration-preview">Duraci&oacute;n: {{ video.duracion }}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<!-- modals -->
+<div class="modal fade" id="editVideoDesc" tabindex="-1" aria-labelledby="editVideoDescModalLabel" aria-hidden="true"
+    #editVideoModal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Editar Descripci&oacute;n</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editVideoDescForm" (ngSubmit)="updateVideoDesc();">
+                    <div class="mb-3">
+                        <label class="form-label" for="descripcion">Descripci&oacute;n</label>
+                        <input type="text" class="form-control" formControlName="descripcion" autocomplete="off">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Actualizar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
