@@ -10,6 +10,8 @@ import { PasarelaPagosComponent } from './components/pasarela-pagos/pasarela-pag
 import { CalificacionesComponent } from './components/calificaciones/calificaciones.component';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
+import { IngresoComponent } from './ingreso/ingreso.component';
 
 export const routes: Routes = [
     { path: '', component: CursosComponent }, // Ruta por defecto
@@ -24,4 +26,6 @@ export const routes: Routes = [
     { path: 'calificaciones', component: CalificacionesComponent },
     { path: 'editar', component: EditarPerfilComponent },
     { path: 'usuarios', component: UsuariosComponent },
+    { path: 'chat-bot', component: ChatBotComponent },
+    { path: 'ingreso', component: IngresoComponent },
   ];
