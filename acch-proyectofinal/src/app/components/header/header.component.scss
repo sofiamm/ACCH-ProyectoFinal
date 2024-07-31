@@ -8,6 +8,7 @@ nav {
 
 a {
     color: #95a6b0;
+    cursor: pointer;
 }
 
 a:hover {
@@ -18,14 +19,10 @@ a:hover {
 
 // Estilos para pantallas más grandes que 1200px
 @media (min-width: 1200px) {
-    .dropdown {
-        
-    }
+    .dropdown {}
 }
 
 // Estilos para pantallas entre 1200px y 992px
 @media (min-width: 992px) and (max-width: 1200px) {
-    .dropdown {
-        
-    }
+    .dropdown {}
 }

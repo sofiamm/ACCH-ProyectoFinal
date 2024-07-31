@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;">
     <div class="container px-4 px-lg-5" style="max-width: 100%;">
         <a class="navbar-brand logo" href="">
             <img class="logo" src="logo-header.png" alt="Logo Centro Cristiano de Heredia">
@@ -9,21 +9,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"
                 style="width: 100%;display: flex;justify-content: space-between;">
-                <div style="display: flex;">
+                <div class="d-flex" *ngIf="this.userTmp?.rol === 'admin'">
                     <li class="nav-item"><a class="nav-link" href="/usuarios">Usuarios</a></li>
                     <li class="nav-item"><a class="nav-link" href="/cursos">Cursos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/reportes">Reportes</a></li>
                     <li class="nav-item"><a class="nav-link" href="/ayuda">Q&A</a></li>
                 </div>
+                <div class="d-flex" *ngIf=" this.userTmp?.rol === 'alumno' || this.userTmp?.rol === 'instructor'">
+                    <li class="nav-item"><a class="nav-link" href="/lista-cursos">Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/ayuda">Q&A</a></li>
+                </div>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">{{ name }}</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: -500%;">
+                        aria-expanded="false" style="color: #95a6b0;">{{ name }}</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: -100%;">
                         <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
-                        <li><a class="dropdown-item" href="/mis-cursos">Mis cursos</a></li>
                         <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
                     </ul>
                 </li>
