@@ -13,6 +13,7 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { VistaCursoComponent } from './components/vista-curso/vista-curso.component';
 import { ListaCursosComponent } from './components/lista-cursos/lista-cursos.component';
+import { IngresoComponent } from './ingreso/ingreso.component';
 
 export const routes: Routes = [
   { path: '', component: ListaCursosComponent }, // Ruta por defecto
@@ -29,4 +30,5 @@ export const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
   { path: 'vista-curso/:id', component: VistaCursoComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'lista-cursos', component: ListaCursosComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno'] } },
+  { path: 'ingreso', component: IngresoComponent },
 ];
