@@ -1,7 +1,7 @@
 .footer {
     align-items: center;
     display: flex;
-    padding: 1.5rem;
+    padding: 1rem;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -19,7 +19,8 @@ a {
     flex: 1 1 auto;
 }
 
-mat-icon, svg {
+mat-icon,
+svg {
     height: 24px;
     width: 24px;
 }
