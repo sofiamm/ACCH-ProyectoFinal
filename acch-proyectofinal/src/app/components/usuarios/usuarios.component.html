@@ -38,20 +38,23 @@
                     <form [formGroup]="newUserForm" (ngSubmit)="createUser();">
                         <div class="mb-3">
                             <label class="form-label" for="nombre">Nombre</label>
-                            <input type="text" class="form-control" formControlName="nombre" autocomplete="off">
+                            <input type="text" class="form-control" formControlName="nombre" autocomplete="off"
+                                placeholder="Ingresa tu nombre">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="apellido">Apellidos</label>
-                            <input type="text" class="form-control" formControlName="apellido" autocomplete="off">
+                            <input type="text" class="form-control" formControlName="apellido" autocomplete="off"
+                                placeholder="Ingresa tus dos apellidos">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="telefono">Teléfono</label>
-                            <input type="text" class="form-control" formControlName="telefono" autocomplete="off">
+                            <input type="text" class="form-control" formControlName="telefono" autocomplete="off"
+                                mask="0000-0000" placeholder="0000-0000">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="correoElectronico">Correo Electrónico</label>
                             <input type="email" class="form-control" formControlName="correoElectronico"
-                                autocomplete="off">
+                                autocomplete="off" placeholder="ejemplo@gmail.com">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="contrasena">Contrase&ntilde;a</label>
@@ -59,7 +62,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="rol">Rol</label>
-                            <select class="form-control" formControlName="rol" autocomplete="off">
+                            <select class="form-control" formControlName="rol">
+                                <option value="" disabled selected hidden>Select an option</option>
                                 <option value="admin">Administrador</option>
                                 <option value="instructor">Instructor</option>
                                 <option value="alumno">Alumno</option>
