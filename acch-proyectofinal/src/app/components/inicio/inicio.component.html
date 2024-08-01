@@ -1,44 +1,43 @@
 <div class="banner6">
   <div class="container">
-  <div class="col-lg-5 align-justify-center contact-form">
-  <div class="col-md-9">
-  <h2 class="mb-3 font-weight-light">Iniciar sesion</h2>
-  <h6 class="subtitle font-weight-normal">Te damos la bienvenida CCH</h6>
-  <form class="mt-4" [formGroup]="loginForm" (ngSubmit)="login()">
-  <div class="col-lg-12">
-  <div class="form-group">
-  <input class="form-control" type="email" placeholder="Correo electrónico" id="email"
-                  formControlName="email" required>
-  </div>
-  </div>
-  <div class="mt-3 col-lg-12">
-  <div class="form-group">
-  <input class="form-control" type="password" placeholder="Contraseña" id="password"
-                  formControlName="password" required>
-  </div>
-  </div>
-  <div class="d-grid mt-4 col-lg-16">
-  <button type="submit" class="btn btn-lg btn-danger-gradiant text-white border-0">Ingresar</button>
-  </div>
-  </form>
-  <div class="row">
-  <div class="col-lg-12 text-center mt-4">
-  <h6 class="font-weight-normal">Ingresa con la cuenta de Google</h6>
-  <div class="row">
-  <div class="d-grid gap-2 col-6 mx-auto">
-  <button type="submit" class="btn btn-primary btn-google" (click)="loginGoogle()">
-  <span class="google-icon"> <img src="icon-google.png" alt="Google icon"></span></button>
-  </div>
-  </div>
-  </div>
-  <div class="col-lg-12 text-center mt-4">
-              Aun no tienes cuenta? <a href="/registro" class="text-danger">Registrate</a>
-  </div>
-  </div>
-  </div>
-  </div>
+    <div class="col-lg-5 align-justify-center contact-form">
+      <div class="col-md-9">
+        <h2 class="mb-3 font-weight-light">Iniciar sesion</h2>
+        <h6 class="subtitle font-weight-normal">Te damos la bienvenida CCH</h6>
+        <form class="mt-4" [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <input class="form-control" type="email" placeholder="Correo electrónico" id="email"
+                formControlName="email" required>
+            </div>
+          </div>
+          <div class="mt-3 col-lg-12">
+            <div class="form-group">
+              <input class="form-control" type="password" placeholder="Contraseña" id="password"
+                formControlName="password" required>
+            </div>
+          </div>
+          <div class="d-grid mt-4 col-lg-16">
+            <button type="submit" class="btn btn-lg btn-ingresar text-white border-0">Ingresar</button>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-lg-12 text-center mt-4">
+            <div class="row">
+              <div class="d-grid gap-2 col-8 mx-auto">
+                <button type="submit" class="btn btn-primary btn-google" (click)="loginGoogle()">
+                  <span class="google-icon"><img src="icon-google.png" alt="Google icon">Ingresa con Google</span></button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 text-center mt-4">
+            Aun no tienes cuenta? <a href="/registro" class="text-link">Registrate</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="col-lg-6 right-image"
-      style="background-image:url(https://images.pexels.com/photos/8383482/pexels-photo-8383482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);">
+    style="background-image:url(https://images.pexels.com/photos/8383482/pexels-photo-8383482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);">
   </div>
-  </div>
+</div>
