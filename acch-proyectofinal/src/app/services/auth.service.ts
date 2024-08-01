@@ -93,20 +93,27 @@ export class AuthService {
   }
 
 
-  getCurrentUser() {
-    if (localStorage.length === 0) return false;
-    return JSON.parse(localStorage.getItem('usuario') || '');
+  async getCurrentUser() {
+    if (typeof localStorage !== 'undefined') {
+      return JSON.parse(localStorage.getItem('usuario') || '');
+    } else {
+      return null;
+    }
   }
 
   isLoggedIn(): boolean {
     try {
-      if (localStorage.length === 0) return false;
-      return !!localStorage.getItem('usuario');
-    } catch (error) {
-      return false;
+      if (localStorage.length > 0) {
+        return !!localStorage.getItem('usuario');
+      } else {
+        return false;
+      }
+    } catch (e) {
+      console.log('localStorage no disponible');
+      return true;
     }
-
   }
+
 
   tmpToUser(userTmp: User): Usuario {
     return {
