@@ -41,7 +41,7 @@ export class RegistroComponent {
   async signupGoogle() {
     try {
       await this.authService.signupGoogle();
-      this.router.navigate(['/']);
+      this.router.navigate(['/lista-cursos']);
     } catch (error) {
       console.error(error);
     }

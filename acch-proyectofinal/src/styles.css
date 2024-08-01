@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
+@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
 
 html,
 body {
@@ -8,5 +9,5 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }

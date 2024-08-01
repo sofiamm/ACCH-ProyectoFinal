@@ -5,7 +5,6 @@
     font-weight: 300;
     position: relative;
     padding-top: 250px;
-    padding-bottom: 250px;
  
 }
  
@@ -15,34 +14,14 @@
 }
  
 .banner6 .subtitle {
-    color: #8d97ad;
     line-height: 24px;
 }
- 
- 
-.banner6 .btn-danger-gradiant {
-    background: #84a98c;
-    background: -webkit-linear-gradient(legacy-direction(to right), #84a98c 0%, #52796f 100%);
-    background: -webkit-gradient(linear, left top, right top, from(#84a98c), to(#52796f));
-    background: -webkit-linear-gradient(left, #84a98c 0%, #52796f 100%);
-    background: -o-linear-gradient(left, #84a98c 0%, #52796f 100%);
-    background: linear-gradient(to right, #84a98c 0%, #52796f 100%);
-}
- 
-.banner6 .btn-danger-gradiant:hover {
-    background: #52796f;
-    background: -webkit-linear-gradient(legacy-direction(to right), #52796f 0%, #84a98c 100%);
-    background: -webkit-gradient(linear, left top, right top, from(#52796f), to(#84a98c));
-    background: -webkit-linear-gradient(left, #52796f 0%, #84a98c 100%);
-    background: -o-linear-gradient(left, #52796f 0%, #84a98c 100%);
-    background: linear-gradient(to right, #52796f 0%, #84a98c 100%);
-}
- 
  
 .banner6 .text-link {
     color: #26445a;
     font-weight: 500;
 }
+
 .btn-ingresar {
     background-color: #26445a;
 }

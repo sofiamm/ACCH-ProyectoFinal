@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './ingreso.component.html',
-  styleUrl: './ingreso.component.css'
+  styleUrl: './ingreso.component.scss'
 })
 export class IngresoComponent {
 

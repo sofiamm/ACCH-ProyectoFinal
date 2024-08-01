@@ -1,34 +1,36 @@
 @import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
- 
+
 .banner6 {
     font-family: "Montserrat", sans-serif;
     font-weight: 300;
     position: relative;
-    padding-top: 250px;
-    padding-bottom: 250px;
- 
+    padding-top: 150px;
+
 }
- 
+
+
 .banner6 h2,
 .banner6 h6 {
     color: #3e4555;
 }
- 
+
 .banner6 .subtitle {
     color: #8d97ad;
     line-height: 24px;
 }
- 
- 
- 
-.banner6 .text-danger {
-    color: #588157 !important;
+
+
+
+.banner6 .text-link {
+    color: #26445a;
+    font-weight: 500;
 }
+
 
 .btn-registro {
     background-color: #26445a;
 }
- 
+
 .banner6 .right-image {
     background-position: center;
     background-size: cover;
@@ -39,7 +41,7 @@
     bottom: 0px;
     border-radius: 10px;
 }
- 
+
 /* Botón de inicio de sesión de Google */
 .btn-google {
     background-color: white;
@@ -48,15 +50,15 @@
     color: #f3c317;
     border-radius: 20px;
 }
- 
+
 .btn-google:hover {
     background-color: #f0e5bd;
 }
- 
+
 .btn-google .google-icon {
     margin-right: 10px;
 }
- 
+
 .btn-google .google-icon img {
     width: 35px;
     height: 35px;
