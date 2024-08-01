@@ -1,0 +1,23 @@
+<app-header></app-header>
+<br>
+<br>
+<br>
+
+<div class="container mt-5">
+    <div class="row">
+        <div *ngFor="let curso of cursos" class="col-md-3 mb-4">
+            <div class="card">
+                <div class="image-container">
+                    <img [src]="curso.imagen" class="img-fluid rounded thumbnail-image" alt="{{ curso.nombre }}">
+                </div>
+                <div class="product-detail-container p-2">
+                    <h5 class="dress-name">{{ curso.nombre }}</h5>
+                    <span>Instructor: {{ curso.instructor?.nombre }}</span>
+                    <div class="body-card pt-1">
+                        <a class="btn btn-outline-warning" [routerLink]="['/vista-curso', curso.id]">Ver curso</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
