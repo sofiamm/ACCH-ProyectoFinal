@@ -9,20 +9,22 @@ import { Usuario } from '../models/usuario.model';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
-    if (this.authService.isLoggedIn()) {
-      const currentUser: Usuario = this.authService.getCurrentUser();
+  async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
+    if (await this.authService.isLoggedIn()) {
+      const currentUser: Usuario = await this.authService.getCurrentUser();
       const requiredRoles = route.data['roles'] as Array<string>;
-
-      if (requiredRoles && requiredRoles.includes(currentUser.rol)) {
-        return true;
+      if (currentUser !== null) {
+        if (requiredRoles && requiredRoles.includes(currentUser.rol)) {
+          return true;
+        } else {
+          this.router.navigate(['/lista-cursos']);
+          return false;
+        }
       } else {
-        this.router.navigate(['/inicio']);
         return false;
       }
     } else {
       this.router.navigate(['/inicio']);
       return false;
     }
-  }
-}
+  }}
