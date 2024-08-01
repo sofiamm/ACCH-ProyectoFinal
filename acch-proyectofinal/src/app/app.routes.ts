@@ -17,11 +17,11 @@ import { IngresoComponent } from './components/ingreso/ingreso.component';
 
 export const routes: Routes = [
   { path: '', component: IngresoComponent }, // Ruta por defecto
-  { path: 'cursos', component: CursosComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
-  { path: 'registro', component: RegistroComponent },
-  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'inicio', component: InicioComponent },
-  { path: 'reportes', component: ReportesComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'cursos', component: CursosComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
+  { path: 'reportes', component: ReportesComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
   { path: 'ayuda', component: PreguntasComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'mis-cursos', component: MisCursosComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'pagar', component: PasarelaPagosComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
