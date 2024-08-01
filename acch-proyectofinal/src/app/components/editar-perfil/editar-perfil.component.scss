@@ -1,37 +1,135 @@
-.container {
-    max-width: 520px;
-    margin-bottom: 417px;
+body {
+    background: #eee !important;
 }
 
-.columna-perfil {
-    align-content: center;
-}
-
-img {
-    border-radius: 100%;
-    width: 150px;
-}
-
-button {
-    padding: 10px;
+.card.card-main {
     border: none;
-    border-radius: 4px;
-    background-color: #f3c317;
-    color: white;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
     cursor: pointer;
-    margin-top: 30px;
 }
 
-button:hover {
-    background-color: #876b05;
+.card.card-main:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: lightgray;
+    transform: scaleY(1);
+    transition: all 0.5s;
+    transform-origin: bottom
 }
 
-mat-icon {
-    vertical-align: middle;
-    font-size: 18px;
+.card.card-main:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: black;
+    transform: scaleY(0);
+    transition: all 0.5s;
+    transform-origin: bottom
 }
 
-a {
-    color: #fff;
-    text-decoration: none;
+.card.card-main:hover::after {
+    transform: scaleY(1);
+}
+
+
+.fonts {
+    font-size: 11px;
+}
+
+.social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+}
+
+.social-list li {
+    padding: 10px;
+    color: #8E24AA;
+    font-size: 19px;
+}
+
+.editProfile {
+    margin-top: 5%;
+}
+
+.nombre {
+    text-transform: capitalize;
+}
+
+.shadowBorder {
+    -webkit-box-shadow: 4px 6px 35px 29px rgba(204, 204, 204, 1);
+    -moz-box-shadow: 4px 6px 35px 29px rgba(204, 204, 204, 1);
+    box-shadow: 4px 6px 35px 29px rgba(204, 204, 204, 1);
+}
+
+.btn-send {
+    width: 30%;
+    margin: 8% 0% 2% 0%;
+}
+
+label {
+    margin-bottom: 5px !important;
+    color: #8a8a8a;
+}
+
+.submitControl {
+    display: flex;
+    justify-content: center;
+}
+
+.shadowBorder.no-border {
+    border: none !important;
+}
+
+.imgProfile {
+    width: 35%;
+    max-width: 80px;
+    margin: 4% 0% 6% 0%;
+}
+
+.form-group {
+    margin-bottom: 7%;
+}
+
+h2 {
+    margin: 0px;
+}
+
+.imgContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4%;
+}
+
+div.container {
+    max-width: 65%;
+    margin: 7rem auto;
+}
+
+div.container>div.text-center:first-child {
+    margin-bottom: 3%;
+}
+
+.container-form {
+    max-width: 65%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    width: 140% !important;
 }
