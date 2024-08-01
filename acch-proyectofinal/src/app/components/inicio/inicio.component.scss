@@ -1,71 +1,77 @@
-a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-style: normal;
+@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
+ 
+.banner6 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    position: relative;
+    padding-top: 250px;
+    padding-bottom: 250px;
+ 
 }
-
-.btn-icon {
-    background-color: transparent;
-    border: none;
-    color: white;
+ 
+.banner6 h2,
+.banner6 h6 {
+    color: #3e4555;
 }
-
-p {
-    color: #969696;
-    font-style: italic;
-    text-align: center;
-    margin: 10px;
+ 
+.banner6 .subtitle {
+    color: #8d97ad;
+    line-height: 24px;
 }
-
-.container {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-width: 350px;
-    padding: 20px;
+ 
+ 
+.banner6 .btn-danger-gradiant {
+    background: #84a98c;
+    background: -webkit-linear-gradient(legacy-direction(to right), #84a98c 0%, #52796f 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#84a98c), to(#52796f));
+    background: -webkit-linear-gradient(left, #84a98c 0%, #52796f 100%);
+    background: -o-linear-gradient(left, #84a98c 0%, #52796f 100%);
+    background: linear-gradient(to right, #84a98c 0%, #52796f 100%);
 }
-
-.page {
-    align-content: center;
-    height: 97%;
+ 
+.banner6 .btn-danger-gradiant:hover {
+    background: #52796f;
+    background: -webkit-linear-gradient(legacy-direction(to right), #52796f 0%, #84a98c 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#52796f), to(#84a98c));
+    background: -webkit-linear-gradient(left, #52796f 0%, #84a98c 100%);
+    background: -o-linear-gradient(left, #52796f 0%, #84a98c 100%);
+    background: linear-gradient(to right, #52796f 0%, #84a98c 100%);
 }
-
-.form-group {
-    margin-bottom: 10px;
+ 
+ 
+.banner6 .text-danger {
+    color: #588157 !important;
 }
-
-.btn-container {
-    display: inline-grid;
-    justify-items: center;
-    width: 100%;
+ 
+.banner6 .right-image {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0px;
+    border-radius: 10px;
 }
-
-.btn {
-    border: none;
-    background-color: #f3c317;
-    margin-bottom: 10px;
-}
-
-.btn:hover {
-    background-color: #876b05;
-}
-
+ 
 /* Botón de inicio de sesión de Google */
 .btn-google {
     background-color: white;
-    border-color: #f3c317;
+    border-color: #f2cc8f;
     border-style: double;
     color: #f3c317;
-  }
-  .btn-google:hover {
+    border-radius: 20px;
+}
+ 
+.btn-google:hover {
     background-color: #f0e5bd;
 }
-
-  .btn-google .google-icon {
+ 
+.btn-google .google-icon {
     margin-right: 10px;
-  }
-  
-  .btn-google .google-icon img {
-    width: 20px;
-    height: 20px;
-  }
-  
+}
+ 
+.btn-google .google-icon img {
+    width: 35px;
+    height: 35px;
+}
