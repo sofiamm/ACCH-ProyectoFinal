@@ -1,5 +1,6 @@
 <app-header></app-header>
-
+<br>
+<br>
 <div class="container mt-4 main-card">
     <div class="card">
         <div class="row">
@@ -71,10 +72,12 @@
                     </div>
 
 
-                    <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                    <label for="file-upload"
+                        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
                         <span>Cargar comprobante</span>
-                        <input (change)="onFileSelected($event)" id="file-upload" name="file-upload" type="file" class="sr-only">
-                      </label>
+                        <input (change)="onFileSelected($event)" id="file-upload" name="file-upload" type="file"
+                            class="sr-only">
+                    </label>
 
 
                     <!-- Botón de Realizar Pedido -->
