@@ -4,11 +4,12 @@ import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
 import { BannerComponent } from '../banner/banner.component';
 import { HeaderComponent } from '../header/header.component';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Notificaciones } from '../../util/notificaciones.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule, Columns, Config, DefaultConfig, APIDefinition, API } from 'ngx-easy-table';
 import { Validaciones } from '../../util/validaciones.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -19,7 +20,7 @@ import { Validaciones } from '../../util/validaciones.component';
     CommonModule,
     ReactiveFormsModule,
     NgbModule,
-    TableModule
+    TableModule,
   ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.scss',
@@ -46,7 +47,7 @@ export class UsuariosComponent {
   /**
    * Funciones
    */
-  constructor(private usuarioService: UsuarioService) {
+  constructor(private usuarioService: UsuarioService, private authService: AuthService) {
     this.usuarioService.getUsers().subscribe(usuarios => {
       this.usuarios = usuarios;
     });
@@ -75,10 +76,12 @@ export class UsuariosComponent {
 
   async createUser() {
     let usuario = this.newUserForm.value;
+    usuario.cuentaGoogle = false;
     let validData = this.validaciones.validarDatosUsuario(usuario);
     if (validData === '') {
       await this.usuarioService.createUser(usuario)
         .then(docRef => {
+          this.authService.register(usuario)
           this.notificaciones.showSuccessNotificacion('Usuario creado exitosamente');
           this.closeModal('add');
         })
