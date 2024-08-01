@@ -1,8 +1,10 @@
+@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'open sans';
+    font-family: "Montserrat", sans-serif;
 }
 
 
@@ -192,6 +194,8 @@ main .sobre-nosotros{
     justify-content: space-evenly;
     border-radius: 5px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    text-align: center;
 }
 
 .cards .card img{
@@ -204,7 +208,6 @@ main .sobre-nosotros{
 }
 
 .cards .card > .contenido-texto-card{
-    width: 60%;
     color: #fff;
 }
 
@@ -228,7 +231,7 @@ main .sobre-nosotros{
 }
 
 .servicio-ind{
-    width: 28%;
+    width: 40%;
     text-align: center;
 }
 

@@ -34,7 +34,7 @@ export class InicioComponent implements OnInit {
   loginGoogle() {
     this.authService.loginGoogle()
       .then(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/lista-cursos']);
       })
       .catch(error => {
         if (error.message.indexOf("Firebase") >= 0) {
@@ -50,7 +50,7 @@ export class InicioComponent implements OnInit {
     this.password = this.loginForm.get("password")?.value;
     this.authService.login(this.email, this.password)
       .then(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/lista-cursos']);
       })
       .catch(error => {
         if (error.message.indexOf("Firebase") >= 0) {
