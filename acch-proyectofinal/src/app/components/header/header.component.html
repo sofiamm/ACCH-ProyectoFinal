@@ -1,10 +1,9 @@
-
-<nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;">
+<nav class="navbar navbar-expand-lg fixed-top">
     <div class="container px-4 px-lg-5" style="max-width: 100%;">
         <a class="navbar-brand logo" href="">
             <img class="logo" src="logo-header.png" alt="Logo Centro Cristiano de Heredia">
         </a>
-        
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
@@ -23,42 +22,39 @@
                 </div>
                 <li class="nav-item dropdown" *ngIf=" this.userTmp?.rol === 'alumno'">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: #95a6b0;">{{ name }}</a>
+                        aria-expanded="false" style="color: #26445a;">{{ name }}</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: -100%;">
                         <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
                         <li>
-                            
+
                         </li>
                         <li><a class="dropdown-item" href="/pagar">pago</a></li>
-                        
+
                         <li>
-                           
+
                         </li>
                         <li><a class="dropdown-item" href="/calificaciones">Calificaciones</a></li>
                         <li>
-                            
+
                         </li>
                         <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
 
-                        
+
                     </ul>
 
                 </li>
 
-                <li class="nav-item dropdown" *ngIf=" this.userTmp?.rol === 'admin' || this.userTmp?.rol === 'instructor'">
+                <li class="nav-item dropdown"
+                    *ngIf=" this.userTmp?.rol === 'admin' || this.userTmp?.rol === 'instructor'">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: #95a6b0;">{{ name }}</a>
+                        aria-expanded="false" style="color: #26445a;">{{ name }}</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: -100%;">
                         <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
-                        
                         <li>
-                            <hr class="dropdown-divider" />
+                            <hr class="dropdown-divider" style="color: #f5f5f5;" />
                         </li>
                         <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
-
-                        
                     </ul>
-
                 </li>
             </ul>
         </div>

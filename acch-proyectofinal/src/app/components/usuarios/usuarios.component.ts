@@ -20,7 +20,7 @@ import { AuthService } from '../../services/auth.service';
     CommonModule,
     ReactiveFormsModule,
     NgbModule,
-    TableModule,
+    TableModule
   ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.scss',
