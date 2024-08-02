@@ -26,6 +26,7 @@ export class RegistroComponent {
   registerForm: FormGroup;
   validations = new Validaciones();
   notifications = new Notificaciones();
+  user: Usuario | null = null;
  
   constructor(private authService: AuthService, private router: Router) {
     this.registerForm = new FormGroup({
@@ -41,7 +42,11 @@ export class RegistroComponent {
   async signupGoogle() {
     try {
       await this.authService.signupGoogle();
-      this.router.navigate(['/lista-cursos']);
+      if (this.user?.rol === 'alumno' || this.user?.rol === 'instructor') {
+        this.router.navigate(['/lista-cursos']);
+      } else {
+        this.router.navigate(['/reportes']);
+      }
     } catch (error) {
       console.error(error);
     }
