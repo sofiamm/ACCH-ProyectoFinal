@@ -28,8 +28,8 @@
                     <li class="nav-item"><a class="nav-link" href="/ayuda">Q&A</a></li>
                 </div>
                 <div class="d-flex" *ngIf=" this.userTmp?.rol === 'alumno'">
-                    <li><a class="dropdown-item" href="/pagar">Pago</a></li>
-                    <li><a class="dropdown-item" href="/calificaciones">Calificaciones</a></li>
+                    <li><a class="nav-item" href="/pagar">Pago</a></li>
+                    <li><a class="nav-item" href="/calificaciones">Calificaciones</a></li>
                 </div>
                 <li class="nav-item dropdown" *ngIf=" this.userTmp?.rol === 'alumno'">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
