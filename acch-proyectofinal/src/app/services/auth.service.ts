@@ -20,7 +20,6 @@ export class AuthService {
     localStorage.setItem('usuario', JSON.stringify(user));
   }
 
-
   async login(email: string, password: string) {
     if (email || password) {
       try {
@@ -41,7 +40,6 @@ export class AuthService {
     }
     return null;
   }
-
 
   async register(usuario: Usuario) {
     await this.userService.createUser(usuario);
@@ -113,7 +111,6 @@ export class AuthService {
       return true;
     }
   }
-
 
   tmpToUser(userTmp: User): Usuario {
     return {
