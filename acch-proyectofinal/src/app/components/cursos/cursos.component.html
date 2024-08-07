@@ -1,5 +1,5 @@
-<br><br>
 <app-header></app-header>
+<br><br>
 <div class="content-wrapper">
     <div class="columns">
         <div class="column col-12">
@@ -73,7 +73,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="instructor">Instructor</label>
                             <select class="form-control" formControlName="instructor" autocomplete="off">
-                                <option value="" disabled selected>Seleccione un instructor</option>
+                                <option [ngValue]="null" selected disabled hidden>Seleccione un instructor</option>
                                 <option *ngFor="let instructor of instructores" [value]="instructor.id">
                                     {{instructor.nombre }} {{ instructor.apellido }}
                                 </option>
@@ -101,24 +101,28 @@
                     <form [formGroup]="editCourseForm" (ngSubmit)="updateCourse();">
                         <div class="mb-3">
                             <label class="form-label" for="nombre">Nombre</label>
-                            <input type="text" class="form-control" formControlName="nombre" autocomplete="off">
+                            <input type="text" class="form-control" formControlName="nombre" autocomplete="off"
+                                placeholder="Ingresa tu nombre">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="descripcion">Descripci&oacute;n</label>
-                            <input type="text" class="form-control" formControlName="descripcion" autocomplete="off">
+                            <input type="text" class="form-control" formControlName="descripcion" autocomplete="off"
+                                placeholder="Ingresa una pequeña descripción para el curso">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="evaluacion">Evaluaci&oacute;n</label>
-                            <input type="text" class="form-control" formControlName="evaluacion" autocomplete="off">
+                            <input type="text" class="form-control" formControlName="evaluacion" autocomplete="off"
+                                placeholder="Agrega la nota del curso">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="imagen">Imagen</label>
-                            <input type="text" class="form-control" formControlName="imagen" autocomplete="off">
+                            <input type="text" class="form-control" formControlName="imagen" autocomplete="off"
+                                placeholder="Ingresa el link de la imagen que deseas añadir">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="instructor">Instructor</label>
                             <select class="form-control" formControlName="instructor" autocomplete="off">
-                                <option value="" disabled selected>Seleccione un instructor</option>
+                                <option [ngValue]="null" selected disabled hidden>Seleccione un instructor</option>
                                 <option *ngFor="let instructor of instructores" [value]="instructor.id">
                                     {{instructor.nombre }} {{ instructor.apellido }}
                                 </option>

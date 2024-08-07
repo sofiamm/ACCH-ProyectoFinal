@@ -77,36 +77,44 @@ export class UsuariosComponent {
   async createUser() {
     let usuario = this.newUserForm.value;
     usuario.cuentaGoogle = false;
-    let validData = this.validaciones.validarDatosUsuario(usuario);
-    if (validData === '') {
-      await this.usuarioService.createUser(usuario)
-        .then(docRef => {
-          this.authService.register(usuario)
-          this.notificaciones.showSuccessNotificacion('Usuario creado exitosamente');
-          this.closeModal('add');
-        })
-        .catch(error => {
-          this.notificaciones.showErrorNotificacion(error);
-        });
+    if (this.userExists(usuario.correoElectronico)) {
+      this.notificaciones.showErrorNotificacion('Ya existe un usuario con ese correo electrónico');
     } else {
-      this.notificaciones.showErrorNotificacion(validData);
+      let validData = this.validaciones.validarDatosUsuario(usuario);
+      if (validData === '') {
+        await this.usuarioService.createUser(usuario)
+          .then(docRef => {
+            this.authService.register(usuario)
+            this.notificaciones.showSuccessNotificacion('Usuario creado exitosamente');
+            this.closeModal('add');
+          })
+          .catch(error => {
+            this.notificaciones.showErrorNotificacion(error);
+          });
+      } else {
+        this.notificaciones.showErrorNotificacion(validData);
+      }
     }
   }
 
   async updateUser() {
     let usuario = this.editUserForm.value;
-    let validData = this.validaciones.validarDatosUsuario(usuario);
-    if (validData === '') {
-      await this.usuarioService.updateUser(usuario)
-        .then(docRef => {
-          this.notificaciones.showSuccessNotificacion('Usuario actualizado exitosamente');
-          this.closeModal('edit');
-        })
-        .catch(error => {
-          this.notificaciones.showErrorNotificacion(error);
-        });
+    if (this.userExists(usuario.correoElectronico)) {
+      this.notificaciones.showErrorNotificacion('Ya existe un usuario con ese correo electrónico');
     } else {
-      this.notificaciones.showErrorNotificacion(validData);
+      let validData = this.validaciones.validarDatosUsuario(usuario);
+      if (validData === '') {
+        await this.usuarioService.updateUser(usuario)
+          .then(docRef => {
+            this.notificaciones.showSuccessNotificacion('Usuario actualizado exitosamente');
+            this.closeModal('edit');
+          })
+          .catch(error => {
+            this.notificaciones.showErrorNotificacion(error);
+          });
+      } else {
+        this.notificaciones.showErrorNotificacion(validData);
+      }
     }
   }
 
@@ -160,6 +168,10 @@ export class UsuariosComponent {
       this.usuarioService.deleteUser(usuario);
       this.notificaciones.showSuccessNotificacion('Usuario eliminado exitosamente');
     });
+  }
+
+  userExists(email: string): boolean {
+    return this.usuarios.some(u => u.correoElectronico.toLowerCase() === email.toLowerCase());
   }
 }
 

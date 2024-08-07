@@ -87,19 +87,24 @@ export class CursosComponent {
     } else {
       this.newCourseForm.value.instructor = null;
     }
+
     let curso = this.newCourseForm.value;
-    let validData = this.validaciones.validarDatosCurso(curso);
-    if (validData === '') {
-      await this.cursoService.createCourse(curso)
-        .then(docRef => {
-          this.notificaciones.showSuccessNotificacion('Curso creado exitosamente');
-          this.closeModal('add');
-        })
-        .catch(error => {
-          this.notificaciones.showErrorNotificacion(error);
-        });
+    if (this.courseExists(curso.nombre)) {
+      this.notificaciones.showErrorNotificacion('Ya existe un curso con ese nombre');
     } else {
-      this.notificaciones.showErrorNotificacion(validData);
+      let validData = this.validaciones.validarDatosCurso(curso);
+      if (validData === '') {
+        await this.cursoService.createCourse(curso)
+          .then(docRef => {
+            this.notificaciones.showSuccessNotificacion('Curso creado exitosamente');
+            this.closeModal('add');
+          })
+          .catch(error => {
+            this.notificaciones.showErrorNotificacion(error);
+          });
+      } else {
+        this.notificaciones.showErrorNotificacion(validData);
+      }
     }
   }
 
@@ -108,18 +113,22 @@ export class CursosComponent {
     let instructor = this.instructores.find(usuario => usuario.id === instructorId);
     let curso = this.editCourseForm.value;
     curso.instructor = instructor;
-    let validData = this.validaciones.validarDatosCurso(curso);
-    if (validData === '') {
-      await this.cursoService.updateCourse(curso)
-        .then(docRef => {
-          this.notificaciones.showSuccessNotificacion('Curso actualizado exitosamente');
-          this.closeModal('edit');
-        })
-        .catch(error => {
-          this.notificaciones.showErrorNotificacion(error);
-        });
+    if (this.courseExists(curso.nombre)) {
+      this.notificaciones.showErrorNotificacion('Ya existe un curso con ese nombre');
     } else {
-      this.notificaciones.showErrorNotificacion(validData);
+      let validData = this.validaciones.validarDatosCurso(curso);
+      if (validData === '') {
+        await this.cursoService.updateCourse(curso)
+          .then(docRef => {
+            this.notificaciones.showSuccessNotificacion('Curso actualizado exitosamente');
+            this.closeModal('edit');
+          })
+          .catch(error => {
+            this.notificaciones.showErrorNotificacion(error);
+          });
+      } else {
+        this.notificaciones.showErrorNotificacion(validData);
+      }
     }
   }
 
@@ -179,5 +188,10 @@ export class CursosComponent {
 
   loadDefaultImg(curso: Curso) {
     curso.imagen = '/assets/empty_img.jpeg';
+  }
+
+  courseExists(curso: string): boolean {
+    console.log(curso);
+    return this.cursos.some(c => c.nombre.toLowerCase() === curso.toLowerCase());
   }
 }
