@@ -127,15 +127,13 @@ export class AuthService {
 
   // Enviar correo para resetear la contraseña
   async resetPassword(email: string) {
-    if (!email) {
-      console.error('Please enter an email address');
-      return;
-    }
     try {
-      await sendPasswordResetEmail(this.auth, email);
-      console.log('Email sent');
-    } catch (error) {
-      console.error(error);
+      const result = await sendPasswordResetEmail(this.auth, email);
+      this.notificaciones.showSuccessNotificacion('Correo enviado, revisa tu bandeja de entrada.');
+      return result;
+    } catch (error: any) {
+      this.notificaciones.showErrorNotificacion('Error al enviar correo.');
+      throw error;
     }
   }
 }
