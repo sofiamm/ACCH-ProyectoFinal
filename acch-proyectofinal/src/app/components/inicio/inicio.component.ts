@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MatDividerModule } from '@angular/material/divider';
-import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario.model';
+
 
 @Component({
   selector: 'app-inicio',
@@ -18,11 +19,19 @@ export class InicioComponent implements OnInit {
   password: string = '';
   loginForm: FormGroup;
   user: Usuario | null = null;
+  resertPasswordForm: FormGroup;
+
+  @ViewChild('resertPasswordModal') resertPasswordModal!: ElementRef;
+
 
   constructor(private authService: AuthService, private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl(''),
       password: new FormControl('')
+    });
+
+    this.resertPasswordForm = new FormGroup({
+      correoElectronico: new FormControl()
     });
   }
 
@@ -68,6 +77,21 @@ export class InicioComponent implements OnInit {
         } else {
           console.error(error);
         }
+      });
+  }
+
+  resertPassword() {
+    const email = this.resertPasswordForm.get("correoElectronico")?.value;
+    this.authService.resetPassword(email)
+      .then(() => {
+        console.log('Email sent');
+        let modalElement = this.resertPasswordModal.nativeElement;
+        const modal = (window as any).bootstrap.Modal.getInstance(modalElement);
+        modal.hide();
+        this.resertPasswordForm.reset();
+      })
+      .catch(error => {
+        console.error(error);
       });
   }
 }

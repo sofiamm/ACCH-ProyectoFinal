@@ -66,7 +66,7 @@ export class UsuarioService {
     }
   }
 
-  // Actualizar usuairo
+  // Actualizar usuario
   async updateUser(usuario: Partial<Usuario>): Promise<void> {
     const usuarioDocRef = doc(this.usuariosCollection, usuario.id);
     await updateDoc(usuarioDocRef, usuario);
@@ -75,7 +75,6 @@ export class UsuarioService {
       await updatePassword(this.auth.currentUser, usuario.contrasena);
     }
   }
-
 
   // Eliminar usuario
   deleteUser(usuario: Usuario) {

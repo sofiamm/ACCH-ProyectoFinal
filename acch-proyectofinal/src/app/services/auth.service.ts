@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, User, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, User, createUserWithEmailAndPassword, sendPasswordResetEmail } from '@angular/fire/auth';
 import { Usuario } from '../models/usuario.model';
 import { UsuarioService } from './usuario.service';
 import { Notificaciones } from '../util/notificaciones.component';
@@ -90,7 +90,6 @@ export class AuthService {
     this.auth.signOut();
   }
 
-
   async getCurrentUser() {
     if (typeof localStorage !== 'undefined') {
       return JSON.parse(localStorage.getItem('usuario') || '');
@@ -124,5 +123,19 @@ export class AuthService {
       rol: 'alumno',
       cursos_inscritos: []
     };
+  }
+
+  // Enviar correo para resetear la contraseña
+  async resetPassword(email: string) {
+    if (!email) {
+      console.error('Please enter an email address');
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(this.auth, email);
+      console.log('Email sent');
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
