@@ -67,6 +67,7 @@ export class CursosComponent {
       evaluacion: new FormControl(),
       imagen: new FormControl(),
       instructor: new FormControl(),
+      precio: new FormControl(),
     });
 
     this.editCourseForm = new FormGroup({
@@ -76,6 +77,7 @@ export class CursosComponent {
       evaluacion: new FormControl(),
       imagen: new FormControl(),
       instructor: new FormControl(),
+      precio: new FormControl(),
     });
   }
 
@@ -109,11 +111,12 @@ export class CursosComponent {
   }
 
   async updateCourse() {
+    let tmpCourse = await this.cursoService.getCourseId(this.editCourseForm.value.id);
     let instructorId = this.editCourseForm.value.instructor;
     let instructor = this.instructores.find(usuario => usuario.id === instructorId);
     let curso = this.editCourseForm.value;
     curso.instructor = instructor;
-    if (this.courseExists(curso.nombre)) {
+    if (this.courseExists(curso.nombre) && tmpCourse?.nombre !== curso.nombre) {
       this.notificaciones.showErrorNotificacion('Ya existe un curso con ese nombre');
     } else {
       let validData = this.validaciones.validarDatosCurso(curso);
@@ -142,6 +145,7 @@ export class CursosComponent {
     this.columns = [
       { key: 'nombre', title: 'Nombre' },
       { key: 'descripcion', title: 'Descripción' },
+      { key: 'precio', title: 'Precio' },
       { key: 'evaluacion', title: 'Evaluación' },
       { key: 'imagen', title: 'Imagen', cellTemplate: this.imageTemplate, orderEnabled: false },
       { key: '', title: 'Instructor', cellTemplate: this.instructorTemplate },
@@ -175,7 +179,8 @@ export class CursosComponent {
       descripcion: curso.descripcion,
       evaluacion: curso.evaluacion,
       imagen: imgSource,
-      instructor: curso.instructor?.id
+      instructor: curso.instructor?.id,
+      precio: curso.precio
     });
   }
 
@@ -191,7 +196,6 @@ export class CursosComponent {
   }
 
   courseExists(curso: string): boolean {
-    console.log(curso);
     return this.cursos.some(c => c.nombre.toLowerCase() === curso.toLowerCase());
   }
 }
