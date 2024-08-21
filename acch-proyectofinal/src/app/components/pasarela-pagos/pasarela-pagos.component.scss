@@ -36,3 +36,122 @@ a {
 form {
     padding: 20px;
 }
+
+body {
+    background: #eee !important;
+}
+
+.card.card-main {
+    border: none;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.card.card-main:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: lightgray;
+    transform: scaleY(1);
+    transition: all 0.5s;
+    transform-origin: bottom
+}
+
+.card.card-main:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: black;
+    transform: scaleY(0);
+    transition: all 0.5s;
+    transform-origin: bottom
+}
+
+.card.card-main:hover::after {
+    transform: scaleY(1);
+}
+
+
+.fonts {
+    font-size: 11px;
+}
+
+.social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+}
+
+.social-list li {
+    padding: 10px;
+    color: #8E24AA;
+    font-size: 19px;
+}
+
+.editProfile {
+    margin-top: 5%;
+}
+
+.nombre {
+    text-transform: capitalize;
+}
+
+.shadowBorder {
+    -webkit-box-shadow: 4px 6px 35px 29px rgba(204, 204, 204, 1);
+    -moz-box-shadow: 4px 6px 35px 29px rgba(204, 204, 204, 1);
+    box-shadow: 4px 6px 35px 29px rgba(204, 204, 204, 1);
+}
+
+.courses-list {
+    width: 100%;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: calc(-1* var(--bs-gutter-y));
+    margin-right: calc(-.5* var(--bs-gutter-x));
+    margin-left: calc(-.5* var(--bs-gutter-x));
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    margin: 3% auto;
+    width: 80% !important;
+}
+
+.courses-list img {
+    height: 10rem;
+}
+
+.overflow {
+    overflow-x: scroll;
+}
+
+.rol {
+    margin-bottom: .25rem !important;
+}
+
+.rol span {
+    background-color: lightgray;
+    border-radius: 50px;
+    padding: 5px;
+    text-transform: capitalize;
+}
+
+.submitControl {
+    display: flex;
+    justify-content: center;
+}
+
+#file-upload {
+    margin-left: 10px;
+}

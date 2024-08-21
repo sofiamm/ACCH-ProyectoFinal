@@ -10,41 +10,22 @@
                     <img [src]="userTmp?.imagen" width="100" class="rounded-circle" alt="...">
                 </div>
                 <div class="text-center mt-3">
-                    <h5 class="mt-2 mb-0 nombre">{{ userTmp?.nombre }}</h5>
+                    <h5 class="mt-2 mb-0 nombre">{{ userTmp?.nombre }} {{ userTmp?.apellido }}</h5>
+                    <div class="px-4 mt-1 rol">
+                        <span>{{ userTmp?.rol }}</span>
+                    </div>
                     <span>{{ userTmp?.correoElectronico }}</span>
                     <div class="px-4 mt-1">
                         <span>{{ userTmp?.telefono }}</span>
                     </div>
                     <div class="row courses-list overflow">
-                        <div class="col-4">
+                        <div class="col-4" *ngFor="let course of userTmp?.cursos_inscritos">
                             <div class="card">
-                                <img src="./assets/empty_img.jpeg" class="card-img-top" alt="...">
+                                <img src="{{ course.imagen }}" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <p class="card-text">Titulo del curso.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <img src="./assets/empty_img.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Titulo del curso.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <img src="./assets/empty_img.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Titulo del curso.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <img src="./assets/empty_img.jpeg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Titulo del curso.</p>
+                                    <a href="/vista-curso/{{ course.id }}">
+                                        <p class="card-text">{{ course.nombre}}</p>
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -1,89 +1,74 @@
 <app-header></app-header>
-<br><br>
-<div class="container mt-4 main-card">
-    <div class="card">
-        <div class="row">
-            <div class="card-body">
-                <form>
-                    <!-- Información Personal -->
-                    <h2>Información Personal</h2>
-                    <div class="form-group">
-                        <label for="nombre">Nombre *</label>
-                        <input type="text" class="form-control" id="nombre" required>
+<br>
+<br>
+<br>
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-main p-3 py-4 shadowBorder">
+                <form [formGroup]="buyForm" (ngSubmit)="buyCourse()">
+                    <h2>Inscripci&oacute;n</h2>
+                    <div class="mb-3">
+                        <label for="curso" class="form-label">Curso</label>
+                        <select #curso class="form-control" id="curso" (change)="loadPrice()">
+                            <option *ngFor="let curso of cursos" [value]="curso.id">{{ curso.nombre }}</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="apellidos">Apellidos *</label>
-                        <input type="text" class="form-control" id="apellidos" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo electrónico *</label>
-                        <input type="text" class="form-control" id="email" required>
-                    </div>
-                    <mat-divider></mat-divider>
-
-                    <!-- Su Orden -->
-                    <h2>Material a adquirir por materia</h2>
-                    <div class="form-group">
-                        <label for="materia">{{cursoSeleccionado}}</label>
-                        <select class="form-control" id="material">
+                    <div class="mb-3">
+                        <label for="material" class="form-label">Material</label>
+                        <select #material class="form-control" id="material">
                             <option>Libro de texto</option>
                             <option>Material virtual</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="monto">Total a pagar</label>
-                        <input type="text" value="₡5000" class="form-control" id="monto" readonly>
+                    <div class="mb-3">
+                        <label for="monto" class="form-label">Total a pagar</label>
+                        <input type="text" class="form-control" id="monto" formControlName="monto" placeholder="0"
+                            readonly>
                     </div>
                     <mat-divider></mat-divider>
-
-                    <!-- Método de Pago -->
-                    <h2>Método de Pago</h2>
-                    <div class="form-group">
-                        <label for="tarjeta">Tarjetas de crédito/débito</label>
-                        <select class="form-control" id="tarjeta">
-                            <option>Visa</option>
-                            <option>Mastercard</option>
-                        </select>
+                    <h5>Pago por Sinpe Móvil</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="usrTelefono" class="form-label">Número del que se realizó el sinpe *</label>
+                                <input type="tel" class="form-control" id="usrTelefono" formControlName="usrTelefono"
+                                    required placeholder="# teléfono">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="id" class="form-label">Número del comprobante *</label>
+                                <input type="number" class="form-control" id="id" formControlName="id" required
+                                    placeholder="# comprobante">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="numero-tarjeta">Número de tarjeta *</label>
-                        <input type="text" class="form-control" id="numero-tarjeta" required>
-                    </div>
-                    <mat-divider></mat-divider>
-
-                    <!-- Pago por Sinpe Móvil -->
-                    <h2>Pago por Sinpe Móvil</h2>
-                    <div class="form-group">
-                        <label for="sinpe">Número del que se realizó el sinpe *</label>
-                        <input type="text" class="form-control" id="sinpe" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="comprobante">Número del comprobante *</label>
-                        <input type="text" class="form-control" id="comprobante" required>
+                    <div class="form-group mb-3">
+                        <label for="file-upload"
+                            class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                            <span>Cargar comprobante </span>
+                            <input id="file-upload" formControlName="file-upload" type="file" class="sr-only"
+                                accept="image/*">
+                        </label>
                     </div>
 
                     <!-- Términos y Condiciones -->
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="terminos" required>
-                        <label class="form-check-label" for="terminos">He leído y estoy de acuerdo con los términos y
+                    <div class="form-group form-check mb-3">
+                        <input #terminos type="checkbox" class="form-check-input" id="terminos" required>
+                        <label class="form-check-label" class="form-label" for="terminos">He leído y estoy de acuerdo
+                            con los términos y
                             condiciones de
                             la web *</label>
                     </div>
 
-
-                    <label for="file-upload"
-                        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                        <span>Cargar comprobante</span>
-                        <input (change)="onFileSelected($event)" id="file-upload" name="file-upload" type="file"
-                            class="sr-only">
-                    </label>
-
-
                     <!-- Botón de Realizar Pedido -->
-                    <button type="submit" mat-button>
-                        <mat-icon>shopping_basket</mat-icon>
-                        <a href="/mis-cursos">Realizar matricula</a>
-                    </button>
+                    <div class="row">
+                        <div class="col-md-12 submitControl">
+                            <input type="submit" class="btn btn-outline-warning btn-send pt-2 btn-block"
+                                value="Inscrirme">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
