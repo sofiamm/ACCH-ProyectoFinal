@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { FooterComponent } from './components/footer/footer.component';
@@ -17,4 +17,9 @@ import { HeaderComponent } from './components/header/header.component';
 })
 export class AppComponent {
   title = 'Home';
+  @HostListener('document:contextmenu', ['$event'])
+  onRightClick(event: Event) {
+    event.preventDefault();
+    return false;
+  }
 }
