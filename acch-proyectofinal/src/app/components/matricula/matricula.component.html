@@ -1,0 +1,30 @@
+<app-header></app-header>
+<br>
+<br>
+<div class="content-wrapper">
+    <div class="columns">
+        <div class="column col-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-3 col-sm-12 col-ml-auto">
+                        <input class="form-input" type="text" id="globalSearch" (input)="onChange($event)"
+                            placeholder="Buscar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <ngx-table #table [configuration]="configuration" [data]="invoices" [columns]="columns">
+        </ngx-table>
+        <ng-template #imageTemplate let-row>
+            <div *ngIf="row.comprobanteImg" style="width: 150px;">
+                <img [src]="row.comprobanteImg" class="imagen-comprobante" alt="comprobante" style="width: inherit;">
+            </div>
+            <div *ngIf="!row.comprobanteImg">No imagen</div>
+        </ng-template>
+        <ng-template #actionTpl let-row>
+            <button *ngIf="row.estado == 'Pendiente'" class="btn btn-sm btn-outline-warning me-2"
+                (click)="confirmRegistration(row)"><i class="bi bi-pencil-square"></i>
+                Matricular</button>
+            <div *ngIf="row.estado == 'Aceptado'">Aceptado</div>
+        </ng-template>
+    </div>
