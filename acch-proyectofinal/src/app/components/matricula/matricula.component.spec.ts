@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import { FooterComponent } from './footer.component';
 
-describe('FooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
+import { MatriculaComponent } from './matricula.component';
+
+describe('MatriculaComponent', () => {
+  let component: MatriculaComponent;
+  let fixture: ComponentFixture<MatriculaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FooterComponent]
+      imports: [MatriculaComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(FooterComponent);
+
+    fixture = TestBed.createComponent(MatriculaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

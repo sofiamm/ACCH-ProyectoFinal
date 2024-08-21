@@ -9,4 +9,5 @@ export interface Curso {
   imagen: string;
   instructor?: Usuario;
   videos?: Video[];
+  precio: number;
 }

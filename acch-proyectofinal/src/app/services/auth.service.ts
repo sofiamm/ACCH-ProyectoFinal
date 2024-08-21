@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, User, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, User, createUserWithEmailAndPassword, sendPasswordResetEmail } from '@angular/fire/auth';
 import { Usuario } from '../models/usuario.model';
 import { UsuarioService } from './usuario.service';
 import { Notificaciones } from '../util/notificaciones.component';
@@ -19,7 +19,6 @@ export class AuthService {
   private storeUserInfoLocally(user: Usuario) {
     localStorage.setItem('usuario', JSON.stringify(user));
   }
-
 
   async login(email: string, password: string) {
     if (email || password) {
@@ -41,7 +40,6 @@ export class AuthService {
     }
     return null;
   }
-
 
   async register(usuario: Usuario) {
     await this.userService.createUser(usuario);
@@ -92,7 +90,6 @@ export class AuthService {
     this.auth.signOut();
   }
 
-
   async getCurrentUser() {
     if (typeof localStorage !== 'undefined') {
       return JSON.parse(localStorage.getItem('usuario') || '');
@@ -114,7 +111,6 @@ export class AuthService {
     }
   }
 
-
   tmpToUser(userTmp: User): Usuario {
     return {
       id: userTmp.uid,
@@ -127,5 +123,17 @@ export class AuthService {
       rol: 'alumno',
       cursos_inscritos: []
     };
+  }
+
+  // Enviar correo para resetear la contraseña
+  async resetPassword(email: string) {
+    try {
+      const result = await sendPasswordResetEmail(this.auth, email);
+      this.notificaciones.showSuccessNotificacion('Correo enviado, revisa tu bandeja de entrada.');
+      return result;
+    } catch (error: any) {
+      this.notificaciones.showErrorNotificacion('Error al enviar correo.');
+      throw error;
+    }
   }
 }

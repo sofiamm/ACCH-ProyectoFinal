@@ -4,8 +4,7 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 300;
     position: relative;
-    padding-top: 250px;
- 
+    padding-top: 150px;
 }
  
 .banner6 h2,
@@ -57,4 +56,8 @@
 .btn-google .google-icon img {
     width: 35px;
     height: 35px;
+}
+
+[data-bs-target="#resertPassword"]{
+    margin-top: 10px;
 }

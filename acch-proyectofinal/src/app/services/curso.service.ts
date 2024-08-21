@@ -23,14 +23,20 @@ export class CursoService {
   }
 
   getCourseId(id: string): Promise<Curso | null> {
-    const cursoDocRef = doc(this.cursosCollection, id);
-    return getDoc(cursoDocRef).then((docSnapshot) => {
-      if (docSnapshot.exists()) {
-        return docSnapshot.data() as Curso;
-      } else {
-        return null;
-      }
-    });
+    try {
+      const cursoDocRef = doc(this.cursosCollection, id);
+      return getDoc(cursoDocRef).then((docSnapshot) => {
+        if (docSnapshot.exists()) {
+          return { id, ...docSnapshot.data() } as Curso;
+        } else {
+          console.log(`Curso no encontrado: ${id}`);
+          return null;
+        }
+      });
+    } catch (error) {
+      console.error('Error: ', error);
+      return Promise.resolve(null);
+    }
   }
 
   updateCourse(curso: Partial<Curso>): Promise<void> {

@@ -6,7 +6,7 @@ export interface Usuario {
   correoElectronico: string;
   contrasena: string;
   rol: string;
-  cursos_inscritos?: string[];
+  cursos_inscritos?: { id: string | undefined; nombre: string; imagen: string; }[];
   imagen?: string;
   cuentaGoogle?: boolean;
 }

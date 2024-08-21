@@ -95,18 +95,15 @@ export class EditarPerfilComponent implements OnInit {
   guardarCambios() {
     let userEdit = this.editUserForm.value;
     if (!this.user.cuentaGoogle) { //si no es un usuario de google, se validan las contrasenas
-if (userEdit.contrasena === "" || userEdit.contrasena === null) {
-        userEdit.contrasena = this.userTmp?.contrasena;
-        userEdit.confirma = this.userTmp?.contrasena;
-}
+      if (userEdit.contrasena === "" || userEdit.contrasena === null) {
+        userEdit.contrasena, userEdit.confirma = this.userTmp?.contrasena;
+      }
       if (userEdit.contrasena != userEdit.confirma) {
         this.notificaciones.showErrorNotificacion("Las contraseñas no coinciden");
         return;
       }
     }
-    
     let usernew = this.formToUser();
-    usernew.cuentaGoogle = this.user.cuentaGoogle === undefined ? false : this.user.cuentaGoogle;
     let validData = this.validaciones.validarDatosUsuario(usernew); //validar datos
     if (validData === '') {
       this.usuarioService.updateUser(usernew);

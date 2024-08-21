@@ -8,7 +8,7 @@
         <div class="col-lg-8">
             <!-- Video player -->
             <div class="embed-responsive-16by9">
-                <video #video class="embed-responsive-item" controls></video>
+                <video #video class="embed-responsive-item" controls oncontextmenu="return false;"></video>
             </div>
 
             <!-- Video title and metadata -->
@@ -24,6 +24,12 @@
                 <div class="instructor-info">
                     <span class="mb-0 username">{{ instructor?.nombre }} {{ instructor?.apellido }}</span>
                     <small class="text-muted">{{ instructor?.rol }}</small>
+                </div>
+                <!-- Form comprobación de video -->
+                <div>
+                    <button class="btn btn-lg btn-form text-white border-0" data-bs-toggle="modal"
+                        data-bs-target="#formComprobacion">
+                        Realizar comprobación del curso</button>
                 </div>
             </div>
 
@@ -119,6 +125,23 @@
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="formComprobacion" tabindex="-1" aria-labelledby="formComprobacion" aria-hidden="true"
+    #formComprobacion>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="formComprobacion">Comprobación del curso</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScdZl5oHwdtJNAwDeg7Sex5Sqc0yFu6UjU1DxWNsQNeUu2sAg/viewform?embedded=true"
+                    width="470" height="600" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
 import { Usuario } from '../models/usuario.model';
 import { Curso } from '../models/curso.model';
+import { UsuarioService } from '../services/usuario.service';
+import { CursoService } from '../services/curso.service';
 
 export class Validaciones {
     validarTelefono(telefono: string) {

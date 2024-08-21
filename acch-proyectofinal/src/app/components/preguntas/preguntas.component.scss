@@ -4,15 +4,15 @@ mat-accordion {
 
 .container-pregunta {
     margin-top: 50px;
+    text-align: -webkit-center;
 }
 
 mat-expansion-panel {
     background-color: white;
     color: grey;
-    margin: 0 200px;
+    max-width: 1500px;
 }
 
 mat-panel-title {
-    color: black;
-    font-weight: bold;
+    color: #26445a;
 }
