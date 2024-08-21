@@ -19,6 +19,20 @@ html {
 
 
 /* ********************************** */
+/*             UTILIDADES             */
+/* ********************************** */
+.container {
+	max-width: 115rem;
+	margin: 0 auto;
+}
+
+.heading-1 {
+	text-align: center;
+	font-weight: 500;
+	font-size: 3rem;
+}
+
+/* ********************************** */
 /*               BANNER               */
 /* ********************************** */
 .banner {

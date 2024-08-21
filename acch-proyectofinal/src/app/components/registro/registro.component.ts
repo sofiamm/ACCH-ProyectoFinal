@@ -42,8 +42,10 @@ export class RegistroComponent {
   async signupGoogle() {
     try {
       await this.authService.signupGoogle();
-      if (this.user?.rol === 'alumno' || this.user?.rol === 'instructor') {
+      if (this.user?.rol === 'instructor') {
         this.router.navigate(['/lista-cursos']);
+      }  if (this.user?.rol === 'alumno') {
+        this.router.navigate(['/home']);  
       } else {
         this.router.navigate(['/reportes']);
       }
