@@ -43,9 +43,12 @@ export class InicioComponent implements OnInit {
   loginGoogle() {
     this.authService.loginGoogle()
       .then(() => {
-        if (this.user?.rol === 'alumno' || this.user?.rol === 'instructor') {
+        if (this.user?.rol === 'instructor') {
           this.router.navigate(['/lista-cursos']);
-        } else {
+        }  if (this.user?.rol === 'alumno') {
+          this.router.navigate(['/home']);  
+        }
+        else {
           this.router.navigate(['/reportes']);
         }
       })
@@ -62,9 +65,11 @@ export class InicioComponent implements OnInit {
     this.email = this.loginForm.get("email")?.value;
     this.password = this.loginForm.get("password")?.value;
     this.authService.login(this.email, this.password)
-      .then((user) => {
-        if (user?.rol === 'alumno' || user?.rol === 'instructor') {
+      .then(() => {
+        if (this.user?.rol === 'instructor') {
           this.router.navigate(['/lista-cursos']);
+        }  if (this.user?.rol === 'alumno') {
+          this.router.navigate(['/home']);  
         } else {
           this.router.navigate(['/reportes']);
         }
