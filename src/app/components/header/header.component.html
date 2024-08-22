@@ -19,10 +19,10 @@
                 style="width: 100%;display: flex;justify-content: space-between;">
                 <div class="d-flex" *ngIf="this.userTmp?.rol === 'admin'">
                     <li class="nav-item"><a class="nav-link" href="/usuarios">Usuarios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/cursos">Cursos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/matricula">Matricula</a></li>
                     <li class="nav-item"><a class="nav-link" href="/reportes">Reportes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/ayuda">Q&A</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/cursos">Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/lista-cursos">Videos</a></li>
                 </div>
                 <div class="d-flex" *ngIf="this.userTmp?.rol === 'instructor'">
                     <li class="nav-item"><a class="nav-link" href="/lista-cursos">Cursos</a></li>
