@@ -1,7 +1,5 @@
 <app-header></app-header>
-<br>
-<br>
-<br>
+<br><br><br>
 
 <div class="container mt-5">
     <div class="row">
@@ -14,9 +12,14 @@
                     <h5 class="dress-name">{{ curso.nombre }}</h5>
                     <span>Instructor: {{ curso.instructor?.nombre }}</span>
                     <div class="body-card pt-1">
-                        <a class="btn btn-outline-warning" [routerLink]="['/vista-curso', curso.id]">Ver curso</a>
+                        <a class="btn btn-outline-warning" [routerLink]="['/pagar']">Matricular</a>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div *ngIf="cursos.length === 0" class="col-md-12">
+            <div class="alert alert-info">
+                No se encontraron cursos disponibles.
             </div>
         </div>
     </div>
