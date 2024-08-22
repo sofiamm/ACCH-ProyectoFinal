@@ -1,3 +1,5 @@
+
+
 import { Routes } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
 import { InicioComponent } from './components/inicio/inicio.component';
@@ -33,3 +35,4 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno'] } },
   { path: 'matricula', component: MatriculaComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
 ];
+
