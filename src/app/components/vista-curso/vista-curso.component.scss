@@ -1,0 +1,188 @@
+body {
+    background-color: #f9f9f9;
+}
+
+.sidebar {
+    height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+    font-size: 1.1em;
+    color: #333;
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: #e9ecef;
+}
+
+.main-content {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.comment-box textarea {
+    resize: none;
+}
+
+.media img {
+    width: 50px;
+    height: 50px;
+}
+
+.comment-history .media {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.embed-responsive {
+    margin-bottom: 20px;
+}
+
+.video-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+video {
+    width: 100%;
+}
+
+.video-name {
+    font-size: 1.5rem;
+    line-height: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+.comments-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: none;
+}
+
+form {
+    width: 100%;
+    margin-left: 15px;
+}
+
+.instructor-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.username {
+    font-weight: 500;
+}
+
+.comment-text {
+    font-weight: 300;
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.comment {
+    padding: 1%;
+    margin-bottom: 0px !important;
+}
+
+.videos-name {
+    font-weight: 500;
+    font-size: 1.10rem;
+}
+
+.upload-video-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+}
+
+.upload-video-container button {
+    width: 35% !important;
+    margin-left: 10px;
+    max-height: 35px;
+}
+
+.upload-video {
+    cursor: pointer !important;
+}
+
+.upload-video-container div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.upload-video-container span {
+    text-align: center;
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+
+.upload-video-container textarea {
+    height: 15px;
+}
+
+.video-desc-preview,
+.video-body-footer {
+    font-weight: 300;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.video-body-footer p {
+    margin-bottom: 5px;
+}
+
+.video-body-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.video-actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.video-actions i {
+    font-size: 1.15rem !important;
+}
+
+a.edit-video {
+    color: #ffc107;
+    border-color: #ffc107;
+}
+
+a.delete-video {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.users-comment-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.video-desc {
+    margin-bottom: 15px;
+}
+
+.video-actions a {
+    cursor: pointer;
+}
