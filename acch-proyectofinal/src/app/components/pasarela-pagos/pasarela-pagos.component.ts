@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Curso } from '../../models/curso.model';
 import { CursoService } from '../../services/curso.service';
 import { HeaderComponent } from '../header/header.component';
@@ -10,7 +10,6 @@ import { ReciboService } from '../../services/recibo.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Recibo } from '../../models/recibo.model';
 import { Validaciones } from '../../util/validaciones.component';
-import e from 'express';
 import { firstValueFrom } from 'rxjs';
 import { UsuarioService } from '../../services/usuario.service';
 

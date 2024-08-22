@@ -16,7 +16,7 @@ import { UsuarioService } from '../../services/usuario.service';
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.scss'
 })
- 
+
 export class RegistroComponent {
   usuarios: Usuario[] = [];
   name: string = "";
@@ -44,14 +44,14 @@ export class RegistroComponent {
       confirm: new FormControl('')
     });
   }
- 
+
   async signupGoogle() {
     try {
       await this.authService.signupGoogle();
       if (this.user?.rol === 'instructor') {
         this.router.navigate(['/lista-cursos']);
-      }  if (this.user?.rol === 'alumno') {
-        this.router.navigate(['/home']);  
+      } else if (this.user?.rol === 'alumno') {
+        this.router.navigate(['/home']);
       } else {
         this.router.navigate(['/reportes']);
       }
@@ -59,10 +59,10 @@ export class RegistroComponent {
       console.error(error);
     }
   }
- 
+
   register() {
     let usuario: Usuario = this.formToUser();
-    usuario.imagen = "https://firebasestorage.googleapis.com/v0/b/sagc-bd.appspot.com/o/imagenes-perfil%2FEUk5ZsfihJSJM005vjnV?alt=media&token=a90fde3e-cb71-40db-824e-4d91205d9d7e";
+    usuario.imagen = "https://firebasestorage.googleapis.com/v0/b/sagc-bd.appspot.com/o/imagenes-perfil%2Fdefault.jpg?alt=media&token=e14ee0cb-0647-4469-8e73-da62250f1f6b";
     if (this.userExists(usuario.correoElectronico)) {
       this.notifications.showErrorNotificacion('Ya existe un usuario con ese correo electrónico');
     } else {
@@ -74,7 +74,7 @@ export class RegistroComponent {
             .then(() => {
               if (this.user?.rol === 'instructor') {
                 this.router.navigate(['/lista-cursos']);
-              }  if (this.user?.rol === 'alumno') {
+              } else if (this.user?.rol === 'alumno') {
                 this.router.navigate(['/home']);
               } else {
                 this.router.navigate(['/reportes']);
@@ -89,7 +89,7 @@ export class RegistroComponent {
       }
     }
   }
- 
+
   formToUser(): Usuario {
     let form = this.registerForm.value;
     return {

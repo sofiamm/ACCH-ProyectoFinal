@@ -12,7 +12,10 @@
                     <h5 class="dress-name">{{ curso.nombre }}</h5>
                     <span>Instructor: {{ curso.instructor?.nombre }}</span>
                     <div class="body-card pt-1">
-                        <a class="btn btn-outline-warning" [routerLink]="['/pagar']">Matricular</a>
+                        <a *ngIf="this.user.rol === 'alumno'" class="btn btn-outline-warning"
+                            href="/vista-curso/{{ curso.id }}">Matricular</a>
+                        <a *ngIf="this.user.rol !== 'alumno'" class="btn btn-outline-warning"
+                            href="/vista-curso/{{ curso.id }}">Ver</a>
                     </div>
                 </div>
             </div>

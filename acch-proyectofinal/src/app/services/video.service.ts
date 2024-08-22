@@ -6,7 +6,6 @@ import { getDownloadURL, ref, uploadBytes, Storage, deleteObject } from '@angula
 import { Curso } from '../models/curso.model';
 import { Comentario } from '../models/comentario.model';
 
-
 @Injectable({
     providedIn: 'root'
 })
@@ -27,7 +26,8 @@ export class VideoService {
         const courseDoc = await getDoc(courseRef);
         const courseData = courseDoc.data();
         const videos = courseData?.['videos'] as any[] | undefined;
-        return videos?.find(v => v.id === videoId);
+        let select = videos?.find(v => v.id === videoId);
+        return select;
     }
 
     // Revisa si el curso ya tiene un video con el nombre del video nuevo
@@ -124,8 +124,10 @@ export class VideoService {
 
     async updateVideoDescription(courseId: string, video: Video): Promise<void> {
         const videoTmp = await this.getVideo(courseId, video.id!);
+        if (!videoTmp) {
+            throw new Error('Video no encontrado');
+        }
         videoTmp.descripcion = video.descripcion;
         await this.updateVideo(courseId, video.id!, videoTmp);
     }
-
 }

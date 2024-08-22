@@ -1,10 +1,9 @@
-import { Component, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
 import { BannerComponent } from '../banner/banner.component';
 import { HeaderComponent } from '../header/header.component';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Notificaciones } from '../../util/notificaciones.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule, Columns, Config, DefaultConfig, APIDefinition, API } from 'ngx-easy-table';
