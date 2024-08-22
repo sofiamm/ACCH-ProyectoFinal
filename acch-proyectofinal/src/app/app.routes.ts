@@ -8,7 +8,6 @@ import { PreguntasComponent } from './components/preguntas/preguntas.component';
 import { MisCursosComponent } from './components/mis-cursos/mis-cursos.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { PasarelaPagosComponent } from './components/pasarela-pagos/pasarela-pagos.component';
-import { CalificacionesComponent } from './components/calificaciones/calificaciones.component';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { VistaCursoComponent } from './components/vista-curso/vista-curso.component';
@@ -27,7 +26,6 @@ export const routes: Routes = [
   { path: 'ayuda', component: PreguntasComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'mis-cursos', component: MisCursosComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'pagar', component: PasarelaPagosComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
-  { path: 'calificaciones', component: CalificacionesComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'editar', component: EditarPerfilComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
   { path: 'vista-curso/:id', component: VistaCursoComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
