@@ -1,0 +1,29 @@
+<app-header></app-header>
+<br><br><br>
+
+<div class="container mt-5">
+    <div class="row">
+        <div *ngFor="let curso of cursos" class="col-md-3 mb-4">
+            <div class="card">
+                <div class="image-container">
+                    <img [src]="curso.imagen" class="img-fluid rounded thumbnail-image" alt="{{ curso.nombre }}">
+                </div>
+                <div class="product-detail-container p-2">
+                    <h5 class="dress-name">{{ curso.nombre }}</h5>
+                    <span>Instructor: {{ curso.instructor?.nombre }}</span>
+                    <div class="body-card pt-1">
+                        <a *ngIf="this.user.rol === 'alumno'" class="btn btn-outline-warning"
+                            href="/pagar">Matricular</a>
+                        <a *ngIf="this.user.rol !== 'alumno'" class="btn btn-outline-warning"
+                            href="/vista-curso/{{ curso.id }}">Ver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="cursos.length === 0" class="col-md-12">
+            <div class="alert alert-info">
+                No se encontraron cursos disponibles.
+            </div>
+        </div>
+    </div>
+</div>
