@@ -14,14 +14,14 @@
             </form>
         </div>
         <div class="user-actions">
-            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addUser">
+            <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#addUser">
                 <i class="bi bi-plus-lg"></i> Crear Usuario</button>
         </div>
         <ngx-table #table [configuration]="configuration" [data]="usuarios" [columns]="columns">
         </ngx-table>
         <ng-template #actionTpl let-row>
-            <button class="btn btn-sm btn-outline-warning me-2" (click)="openEditModal(row)" data-bs-toggle="modal"
-                data-bs-target="#editUser"><i class="bi bi-pencil-square"></i> Editar</button>
+            <button class="btn btn-sm btn-outline-info me-2" (click)="openEditModal(row)" data-bs-toggle="modal"
+                data-bs-target="#editUser"><i class="bi bi-pencil-square"></i> Editar</button><br><br>
             <button class="btn btn-sm btn-outline-danger" (click)="openDeleteModal(row)"><i class="bi bi-trash3"></i>
                 Eliminar</button>
         </ng-template>
