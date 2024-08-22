@@ -67,7 +67,7 @@ export class UsuarioService {
     }
   }
 
-  // Actualizar usuairo
+  // Actualizar usuario
   async updateUser(usuario: Partial<Usuario>): Promise<void> {
     try {
       let tmpUser = await this.getUserId(usuario?.id!);
