@@ -25,6 +25,7 @@ import { Validaciones } from '../../util/validaciones.component';
 
 export class EditarPerfilComponent implements OnInit {
   editUserForm: FormGroup;
+  usuarios: Usuario[] = [];
   user = localStorage.getItem('usuario') ? JSON.parse(localStorage.getItem('usuario') || '') : null; //obtiene el usuario en sesion
   id = this.user.id;
   userTmp: Usuario | null = null;
@@ -34,6 +35,10 @@ export class EditarPerfilComponent implements OnInit {
   defaultImg = "https://firebasestorage.googleapis.com/v0/b/sagc-bd.appspot.com/o/imagenes-perfil%2FEUk5ZsfihJSJM005vjnV?alt=media&token=a90fde3e-cb71-40db-824e-4d91205d9d7e"
 
   constructor(public router: Router, private usuarioService: UsuarioService) {
+    this.usuarioService.getUsers().subscribe(usuarios => {
+      this.usuarios = usuarios;
+    });
+
     //inicializar el formulario
     this.editUserForm = new FormGroup({
       id: new FormControl(''),
@@ -77,10 +82,10 @@ export class EditarPerfilComponent implements OnInit {
         imagen: this.userTmp.imagen
       });
       if (this.userTmp?.cuentaGoogle) { //desactiva los campos de correo y contrasena por que tiene una cuenta asociada
-        this.editUserForm.get('correoElectronico')?.disable();
         this.editUserForm.get('contrasena')?.disable();
         this.editUserForm.get('confirma')?.disable();
       }
+      this.editUserForm.get('correoElectronico')?.disable();
       this.photo = this.getUserPhoto();
     }
   }
@@ -93,17 +98,19 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   guardarCambios() {
-    let userEdit = this.editUserForm.value;
+    let userEdit = this.editUserForm.getRawValue();
     if (!this.user.cuentaGoogle) { //si no es un usuario de google, se validan las contrasenas
       if (userEdit.contrasena === "" || userEdit.contrasena === null) {
-        userEdit.contrasena, userEdit.confirma = this.userTmp?.contrasena;
+        userEdit.contrasena = this.userTmp?.contrasena;
+        userEdit.confirma = this.userTmp?.contrasena;
       }
       if (userEdit.contrasena != userEdit.confirma) {
         this.notificaciones.showErrorNotificacion("Las contraseñas no coinciden");
         return;
       }
     }
-    let usernew = this.formToUser();
+    let usernew = this.formToUser(userEdit);
+    usernew.cuentaGoogle = this.user.cuentaGoogle === undefined ? false : this.user.cuentaGoogle;
     let validData = this.validaciones.validarDatosUsuario(usernew); //validar datos
     if (validData === '') {
       this.usuarioService.updateUser(usernew);
@@ -139,8 +146,7 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   //convierte el formulario en un usuario
-  formToUser(): Usuario {
-    let formUser = this.editUserForm.value;
+  formToUser(formUser: Usuario): Usuario {
     let user: Usuario = {
       id: formUser.id,
       nombre: formUser.nombre,
