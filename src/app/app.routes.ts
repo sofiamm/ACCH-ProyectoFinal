@@ -14,6 +14,7 @@ import { VistaCursoComponent } from './components/vista-curso/vista-curso.compon
 import { ListaCursosComponent } from './components/lista-cursos/lista-cursos.component';
 import { IngresoComponent } from './components/ingreso/ingreso.component';
 import { MatriculaComponent } from './components/matricula/matricula.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
   { path: '', component: IngresoComponent }, // Ruta por defecto
@@ -31,4 +32,5 @@ export const routes: Routes = [
   { path: 'vista-curso/:id', component: VistaCursoComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'lista-cursos', component: ListaCursosComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno', 'instructor'] } },
   { path: 'matricula', component: MatriculaComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'alumno'] } },
 ];
