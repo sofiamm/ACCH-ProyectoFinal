@@ -5,6 +5,7 @@ import { Video } from '../models/video.model';
 import { getDownloadURL, ref, uploadBytes, Storage, deleteObject } from '@angular/fire/storage';
 import { Curso } from '../models/curso.model';
 import { Comentario } from '../models/comentario.model';
+import { getAuth } from '@firebase/auth';
 
 @Injectable({
     providedIn: 'root'
