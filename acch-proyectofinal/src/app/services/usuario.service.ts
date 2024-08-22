@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { Firestore, collection, setDoc, collectionData, doc, deleteDoc, updateDoc, getDoc, addDoc, query, where, getDocs } from '@angular/fire/firestore';
 import { Usuario } from '../models/usuario.model';
 import { Observable } from 'rxjs';
-import { ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
-import { Storage } from '@angular/fire/storage';
-import { Auth, updatePassword } from '@angular/fire/auth';
+import { ref, uploadBytes, getDownloadURL, Storage, deleteObject } from '@angular/fire/storage';
+import { Auth, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from '@angular/fire/auth';
+import { Curso } from '../models/curso.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
   private usuariosCollection = collection(this.firestore, 'usuarios');
+  private invoiceCollection = collection(this.firestore, 'contable');
 
   constructor(private firestore: Firestore, private storage: Storage, private auth: Auth) { }
 
@@ -68,19 +69,63 @@ export class UsuarioService {
 
   // Actualizar usuairo
   async updateUser(usuario: Partial<Usuario>): Promise<void> {
-    const usuarioDocRef = doc(this.usuariosCollection, usuario.id);
-    await updateDoc(usuarioDocRef, usuario);
-    //actualiza contrasena de firebase authentication
-    if (usuario.contrasena && this.auth.currentUser) {
-      await updatePassword(this.auth.currentUser, usuario.contrasena);
+    try {
+      let tmpUser = await this.getUserId(usuario?.id!);
+      const usuarioDocRef = doc(this.usuariosCollection, usuario.id);
+      await updateDoc(usuarioDocRef, usuario);
+      //actualiza contrasena de firebase authentication
+      if (this.auth.currentUser && usuario.contrasena && tmpUser?.contrasena !== usuario.contrasena) {
+        const credential = EmailAuthProvider.credential(this.auth.currentUser.email!, tmpUser?.contrasena!);
+        await reauthenticateWithCredential(this.auth.currentUser, credential);
+        await updatePassword(this.auth.currentUser, usuario.contrasena);
+      }
+    } catch (error) {
+      console.error('Error: ', error);
+      throw error;
     }
   }
 
-
   // Eliminar usuario
-  deleteUser(usuario: Usuario) {
+  async deleteUser(usuario: Usuario) {
     const usuarioDocRef = doc(this.firestore, `usuarios/${usuario.id}`);
+    await this.deleteUserImage(usuario.id!);
+    let courses = await this.getUserCourses(usuario.id!);
     return deleteDoc(usuarioDocRef);
+  }
+
+  //Obtener cursos inscritos
+  async getUserCourses(userId: string): Promise<Curso[]> {
+    try {
+      const userDocRef = doc(this.usuariosCollection, userId);
+      const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        return userData['cursosInscritos'] || [];
+      } else {
+        console.log(`Usuario no encontrado: ${userId}`);
+        return [];
+      }
+    } catch (error) {
+      console.error('Error: ', error);
+      return [];
+    }
+  }
+
+  // Borrar recibo
+  async deleteInvoice(id: string): Promise<void> {
+    const invoiceDocRef = doc(this.invoiceCollection, id);
+    return await deleteDoc(invoiceDocRef);
+  }
+
+  // Elimina la imagen del storage
+  async deleteUserImage(userId: string): Promise<void> {
+    const storageRef = ref(this.storage, `imagenes-perfil/${userId}`);
+    try {
+      await deleteObject(storageRef);
+    } catch (error) {
+      console.error('Error deleting image:', error);
+      throw error;
+    }
   }
 
   // Sube la imagen al storage de firebase
@@ -94,6 +139,23 @@ export class UsuarioService {
     } catch (error) {
       console.error('Error getting download URL:', error);
       throw error;
+    }
+  }
+
+  // Agrega cursos a la lista de cursos del usuario
+  async registerUserCourse(userId: string, course: Curso): Promise<void> {
+    const courseInfo = {
+      id: course.id,
+      nombre: course.nombre,
+      imagen: course.imagen,
+    };
+
+    let usr = await this.getUserByEmail(userId);
+    if (usr !== null) {
+      const cursos = usr.cursos_inscritos || [];
+      cursos.push(courseInfo);
+      usr.cursos_inscritos = cursos;
+      await this.updateUser(usr);
     }
   }
 }
