@@ -98,23 +98,19 @@ export class UsuariosComponent {
   }
 
   async updateUser() {
-    let usuario = this.editUserForm.getRawValue();
-    if (this.userExists(usuario.correoElectronico)) {
-      this.notificaciones.showErrorNotificacion('Ya existe un usuario con ese correo electrónico');
+    let usuario = this.editUserForm.value;
+    let validData = this.validaciones.validarDatosUsuario(usuario);
+    if (validData === '') {
+      await this.usuarioService.updateUser(usuario)
+        .then(docRef => {
+          this.notificaciones.showSuccessNotificacion('Usuario actualizado exitosamente');
+          this.closeModal('edit');
+        })
+        .catch(error => {
+          this.notificaciones.showErrorNotificacion(error);
+        });
     } else {
-      let validData = this.validaciones.validarDatosUsuario(usuario);
-      if (validData === '') {
-        await this.usuarioService.updateUser(usuario)
-          .then(docRef => {
-            this.notificaciones.showSuccessNotificacion('Usuario actualizado exitosamente');
-            this.closeModal('edit');
-          })
-          .catch(error => {
-            this.notificaciones.showErrorNotificacion(error);
-          });
-      } else {
-        this.notificaciones.showErrorNotificacion(validData);
-      }
+      this.notificaciones.showErrorNotificacion(validData);
     }
   }
 
@@ -165,7 +161,7 @@ export class UsuariosComponent {
   }
 
   openDeleteModal(usuario: Usuario) {
-    this.notificaciones.showConfirmacion('¿Desea eliminar el usaurio ' + usuario.nombre + '?', 'danger', () => {
+    this.notificaciones.showConfirmacion('¿Desea eliminar el usuario ' + usuario.nombre + '?', 'danger', () => {
       this.usuarioService.deleteUser(usuario);
       this.notificaciones.showSuccessNotificacion('Usuario eliminado exitosamente');
     });
