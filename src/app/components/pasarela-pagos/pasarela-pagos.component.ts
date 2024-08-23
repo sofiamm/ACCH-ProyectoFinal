@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Curso } from '../../models/curso.model';
 import { CursoService } from '../../services/curso.service';
 import { HeaderComponent } from '../header/header.component';
@@ -28,7 +28,7 @@ import { UsuarioService } from '../../services/usuario.service';
   templateUrl: './pasarela-pagos.component.html',
   styleUrl: './pasarela-pagos.component.scss'
 })
-export class PasarelaPagosComponent {
+export class PasarelaPagosComponent implements OnInit {
   user = localStorage.getItem('usuario') ? JSON.parse(localStorage.getItem('usuario') || '') : null;
   usrId = this.user.id;
   cursos: Curso[] = [];
@@ -45,9 +45,6 @@ export class PasarelaPagosComponent {
     private usuarioService: UsuarioService,
     private reciboService: ReciboService
   ) {
-
-    this.loadNotRegisteredCourses();
-
     this.buyForm = new FormGroup({
       id: new FormControl(''),
       usrNombre: new FormControl(''),
@@ -58,6 +55,10 @@ export class PasarelaPagosComponent {
       comprobanteImg: new FormControl(''),
       monto: new FormControl('')
     });
+  }
+
+  async ngOnInit(): Promise<void> {
+    await this.loadNotRegisteredCourses();
   }
 
   async loadNotRegisteredCourses() {
@@ -73,10 +74,22 @@ export class PasarelaPagosComponent {
             inscrito.imagen === curso.imagen
           )
         );
-        this.buyForm.get('monto')?.setValue(this.cursos[0].precio);
+        this.retrieveCourse();
       });
     } catch (error) {
       console.error('Error loading courses:', error);
+    }
+  }
+
+  retrieveCourse() {
+    const selectedCourse = localStorage.getItem('selectedCourse');
+    let foundCourse = this.cursos.find(curso => curso.id === selectedCourse);
+    if (typeof foundCourse !== 'undefined' && foundCourse !== null) {
+      this.buyForm.get('curso')?.setValue(foundCourse.id);
+      this.buyForm.get('monto')?.setValue(foundCourse.precio);
+    } else {
+      this.buyForm.get('curso')?.setValue(this.cursos[0].id);
+      this.buyForm.get('monto')?.setValue(this.cursos[0].precio);
     }
   }
 
@@ -97,6 +110,7 @@ export class PasarelaPagosComponent {
           if (invoiceObj.comprobanteImg !== null) {
             await this.reciboService.createInvoice(invoiceObj);
             this.notificaciones.closeLoadingNotificacion();
+            localStorage.removeItem('selectedCourse');
             this.notificaciones.showSuccessNotificacion('Compra realizada con éxito', () => {
               document.location = '/lista-cursos';
             });

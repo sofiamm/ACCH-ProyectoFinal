@@ -5,7 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CardComponent } from '../card/card.component';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { firstValueFrom } from 'rxjs';
 
@@ -30,11 +30,17 @@ export class ListaCursosComponent implements OnInit {
 
   constructor(
     private cursoService: CursoService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.loadCursos();
+  }
+
+  redirectToPay(courseId: string) {
+    localStorage.setItem('selectedCourse', courseId);
+    this.router.navigate(['/pagar']);
   }
 
   async loadCursos() {
