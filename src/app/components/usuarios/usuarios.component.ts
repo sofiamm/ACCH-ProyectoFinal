@@ -98,7 +98,7 @@ export class UsuariosComponent {
   }
 
   async updateUser() {
-    let usuario = this.editUserForm.value;
+    let usuario = this.editUserForm.getRawValue();
     let validData = this.validaciones.validarDatosUsuario(usuario);
     if (validData === '') {
       await this.usuarioService.updateUser(usuario)

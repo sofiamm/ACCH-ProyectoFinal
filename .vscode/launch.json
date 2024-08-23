@@ -8,7 +8,14 @@
         "url": "http://localhost:4200/",
         "webRoot": "${workspaceFolder}",
         "userDataDir": false
-        //"runtimeArgs": ["--disable-extensions"]
+      },
+      {
+        "name": "Launch Firefox",
+        "type": "firefox",
+        "request": "launch",
+        "url": "http://localhost:4200/",
+        "webRoot": "${workspaceFolder}",
+        "userDataDir": false
       }
     ]
   }
