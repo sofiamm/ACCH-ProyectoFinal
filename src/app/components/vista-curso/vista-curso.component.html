@@ -2,7 +2,7 @@
 <br>
 <br>
 <br>
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-4 general">
     <div class="row">
         <!-- Main content area -->
         <div class="col-lg-8">
@@ -25,13 +25,12 @@
                     <span class="mb-0 username">{{ instructor?.nombre }} {{ instructor?.apellido }}</span>
                     <small class="text-muted">{{ instructor?.rol }}</small>
                 </div>
-            </div>
-
-            <!-- Form comprobación de video -->
-            <div>
-                <button class="btn btn-lg btn-form text-white border-0" data-bs-toggle="modal"
-                    data-bs-target="#formComprobacion">
-                    Realizar comprobación del curso</button>
+                <!-- Form comprobación de video -->
+                <div>
+                    <button class="btn btn-lg btn-form text-white border-0" data-bs-toggle="modal"
+                        data-bs-target="#formComprobacion">
+                        Realizar comprobación del curso</button>
+                </div>
             </div>
 
             <!-- Comment box -->
