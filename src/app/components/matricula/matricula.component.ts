@@ -33,6 +33,7 @@ export class MatriculaComponent {
   public configuration!: Config;
   public columns!: Columns[];
   invoices: Recibo[] = [];
+  selectedImage: string = '';
 
   @ViewChild('table') table!: APIDefinition;
   @ViewChild('imageTemplate', { static: true }) imageTemplate!: TemplateRef<any>;
@@ -85,5 +86,9 @@ export class MatriculaComponent {
       await this.reciboService.acceptInvoice(invoice.id);
       this.notificaciones.showSuccessNotificacion('Curso matriculado exitosamente');
     }
+  }
+
+  openImageModal(imageUrl: string) {
+    this.selectedImage = imageUrl;
   }
 }

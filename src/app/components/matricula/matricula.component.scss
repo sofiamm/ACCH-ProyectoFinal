@@ -1,0 +1,16 @@
+div.modal-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+a.view-image {
+    cursor: pointer;
+    color: #3e80ff;
+    text-decoration: underline;
+}
+
+img {
+    max-width: 50% !important;
+}

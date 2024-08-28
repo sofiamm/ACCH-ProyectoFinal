@@ -17,7 +17,10 @@
         </ngx-table>
         <ng-template #imageTemplate let-row>
             <div *ngIf="row.comprobanteImg" style="width: 150px;">
-                <img [src]="row.comprobanteImg" class="imagen-comprobante" alt="comprobante" style="width: inherit;">
+                <a (click)="openImageModal(row.comprobanteImg)" data-bs-toggle="modal" data-bs-target="#imageModal"
+                    class="view-image">
+                    Ver Recibo
+                </a>
             </div>
             <div *ngIf="!row.comprobanteImg">No imagen</div>
         </ng-template>
@@ -28,3 +31,17 @@
             <div *ngIf="row.estado == 'Aceptado'">Aceptado</div>
         </ng-template>
     </div>
+</div>
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Comprobante</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img [src]="selectedImage" class="img-fluid" alt="Comprobante">
+            </div>
+        </div>
+    </div>
+</div>
