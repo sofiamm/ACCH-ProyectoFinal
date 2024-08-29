@@ -63,6 +63,10 @@ export class InicioComponent implements OnInit {
     this.password = this.loginForm.get("password")?.value;
     this.authService.login(this.email, this.password)
       .then((user) => {
+        if (user == null) {
+          this.router.navigate(['/inicio']);
+          return;
+        }
         if (user?.rol === 'alumno' || user?.rol === 'instructor') {
           this.router.navigate(['/lista-cursos']);
         } else {

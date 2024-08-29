@@ -10,7 +10,7 @@
                     <h2>Inscripci&oacute;n</h2>
                     <div class="mb-3">
                         <label for="curso" class="form-label">Curso</label>
-                        <select #curso class="form-control" id="curso" (change)="loadPrice()">
+                        <select #curso class="form-control" id="curso" (change)="loadPrice()" formControlName="curso">
                             <option *ngFor="let curso of cursos" [value]="curso.id">{{ curso.nombre }}</option>
                         </select>
                     </div>

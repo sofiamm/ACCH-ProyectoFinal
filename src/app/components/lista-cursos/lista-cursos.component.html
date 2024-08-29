@@ -13,7 +13,7 @@
                     <span>Instructor: {{ curso.instructor?.nombre }}</span>
                     <div class="body-card pt-1">
                         <a *ngIf="this.user.rol === 'alumno'" class="btn btn-outline-warning"
-                            href="/pagar">Matricular</a>
+                            (click)="redirectToPay(curso!.id!)">Matricular</a>
                         <a *ngIf="this.user.rol !== 'alumno'" class="btn btn-outline-warning"
                             href="/vista-curso/{{ curso.id }}">Ver</a>
                     </div>
