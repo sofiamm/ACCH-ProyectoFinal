@@ -67,8 +67,10 @@ export class InicioComponent implements OnInit {
           this.router.navigate(['/inicio']);
           return;
         }
-        if (user?.rol === 'alumno' || user?.rol === 'instructor') {
+        if (user?.rol === 'instructor') {
           this.router.navigate(['/lista-cursos']);
+        } else if (user?.rol === 'alumno') {
+          this.router.navigate(['/home']);
         } else {
           this.router.navigate(['/reportes']);
         }
